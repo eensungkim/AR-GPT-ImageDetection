@@ -56,8 +56,8 @@
 			children = (
 				8A7FABA72BCE3DE100C64AF0 /* App */,
 				8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */,
-				8A7FABA52BCE3D8F00C64AF0 /* ImageRecognition */,
-				8A7FABA62BCE3DB900C64AF0 /* VisionInformation */,
+				8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */,
+				8A7FABA62BCE3DB900C64AF0 /* GPTInformation */,
 				8A7FAB942BCE371400C64AF0 /* ViewController.swift */,
 				8A7FAB992BCE371500C64AF0 /* Assets.xcassets */,
 				8A7FAB9B2BCE371500C64AF0 /* LaunchScreen.storyboard */,
@@ -73,18 +73,18 @@
 			path = MarkerRegistration;
 			sourceTree = "<group>";
 		};
-		8A7FABA52BCE3D8F00C64AF0 /* ImageRecognition */ = {
+		8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = ImageRecognition;
+			path = ImageDetection;
 			sourceTree = "<group>";
 		};
-		8A7FABA62BCE3DB900C64AF0 /* VisionInformation */ = {
+		8A7FABA62BCE3DB900C64AF0 /* GPTInformation */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = VisionInformation;
+			path = GPTInformation;
 			sourceTree = "<group>";
 		};
 		8A7FABA72BCE3DE100C64AF0 /* App */ = {
