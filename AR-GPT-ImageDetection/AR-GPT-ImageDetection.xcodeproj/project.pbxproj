@@ -67,9 +67,7 @@
 				8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */,
 				8A7FABA62BCE3DB900C64AF0 /* GPTInformation */,
 				8A7FAB942BCE371400C64AF0 /* ViewController.swift */,
-				8A7FAB992BCE371500C64AF0 /* Assets.xcassets */,
 				8A7FAB9B2BCE371500C64AF0 /* LaunchScreen.storyboard */,
-				8A7FAB9E2BCE371500C64AF0 /* Info.plist */,
 			);
 			path = "AR-GPT-ImageDetection";
 			sourceTree = "<group>";
@@ -104,6 +102,8 @@
 				8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */,
 				8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */,
 				8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */,
+				8A7FAB992BCE371500C64AF0 /* Assets.xcassets */,
+				8A7FAB9E2BCE371500C64AF0 /* Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
