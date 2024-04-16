@@ -16,12 +16,28 @@ final class AGITabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureViewControllers()
+        setupTabBarAppearance()
     }
 }
 // MARK: - Configuration
 extension AGITabBarController {
     private func configureViewControllers() {
+        let markerRegistrationController = AGIMarkerRegistrationViewController()
+        markerRegistrationController.tabBarItem = Tab.registration.tabBarItem
         
+        let imageDetectionController = AGIImageDetectionViewController()
+        imageDetectionController.tabBarItem = Tab.detection.tabBarItem
+        
+        setViewControllers([markerRegistrationController, imageDetectionController], animated: true)
+    }
+}
+
+// MARK: - UI
+extension AGITabBarController {
+    private func setupTabBarAppearance() {
+        tabBar.backgroundColor = .systemBackground
     }
 }
 
