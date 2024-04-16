@@ -27,7 +27,7 @@ final class AGIImageDetectionViewController: UIViewController {
 }
 
 // MARK: - Configuration
-extension AGIImageDetectionViewController: ARSessionDelegate, ARSCNViewDelegate {
+extension AGIImageDetectionViewController: ARSessionDelegate {
     private func configureSession() {
         session.delegate = self
         let configuration = ARWorldTrackingConfiguration()
@@ -38,5 +38,26 @@ extension AGIImageDetectionViewController: ARSessionDelegate, ARSCNViewDelegate 
     private func configureImageDetectionView() {
         imageDetectionView.delegate = self
         imageDetectionView.session = session
+    }
+}
+
+// MARK: - ARSCNViewDelegate
+extension AGIImageDetectionViewController: ARSCNViewDelegate {
+    func renderer(_ renderer: any SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        if let imageAnchor = anchor as? ARImageAnchor {
+            let overlayNode = createOverlayNode(for: imageAnchor.referenceImage)
+            node.addChildNode(overlayNode)
+        }
+    }
+    
+    private func createOverlayNode(for referenceImage: ARReferenceImage) -> SCNNode {
+        let plane: SCNPlane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
+        
+        let overlayNode = SCNNode(geometry: plane)
+        overlayNode.name = referenceImage.name
+        overlayNode.eulerAngles.x = -.pi / 2
+        overlayNode.opacity = 0.25
+        
+        return overlayNode
     }
 }
