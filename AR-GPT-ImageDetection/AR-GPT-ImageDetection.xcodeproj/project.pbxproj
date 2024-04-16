@@ -13,6 +13,8 @@
 		8A7FAB9A2BCE371500C64AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB992BCE371500C64AF0 /* Assets.xcassets */; };
 		8A7FAB9D2BCE371500C64AF0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB9C2BCE371500C64AF0 /* Base */; };
 		8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */; };
+		8A7FABAF2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABAE2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift */; };
+		8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABB12BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		8A7FAB9C2BCE371500C64AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A7FAB9E2BCE371500C64AF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGITabBarController.swift; sourceTree = "<group>"; };
+		8A7FABAE2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGIMarkerRegistrationViewController.swift; sourceTree = "<group>"; };
+		8A7FABB12BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGIImageDetectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABAC2BCE416E00C64AF0 /* Controller */,
 			);
 			path = MarkerRegistration;
 			sourceTree = "<group>";
@@ -78,6 +83,7 @@
 		8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABAD2BCE417A00C64AF0 /* Controller */,
 			);
 			path = ImageDetection;
 			sourceTree = "<group>";
@@ -97,6 +103,22 @@
 				8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		8A7FABAC2BCE416E00C64AF0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABAE2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8A7FABAD2BCE417A00C64AF0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABB12BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,7 +193,9 @@
 			files = (
 				8A7FAB952BCE371400C64AF0 /* ViewController.swift in Sources */,
 				8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */,
+				8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */,
 				8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */,
+				8A7FABAF2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift in Sources */,
 				8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
