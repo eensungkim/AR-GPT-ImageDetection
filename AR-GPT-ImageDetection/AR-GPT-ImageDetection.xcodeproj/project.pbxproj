@@ -15,6 +15,10 @@
 		8A7FABAF2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABAE2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift */; };
 		8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABB12BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift */; };
 		8A7FABB62BCE474300C64AF0 /* MarkerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABB52BCE474300C64AF0 /* MarkerImage.swift */; };
+		8A7FABB92BCE526B00C64AF0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABB82BCE526B00C64AF0 /* NetworkManager.swift */; };
+		8A7FABBD2BCE58F600C64AF0 /* VisionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABBC2BCE58F600C64AF0 /* VisionAPI.swift */; };
+		8A7FABC52BCE612600C64AF0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC42BCE612600C64AF0 /* Config.swift */; };
+		8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,11 @@
 		8A7FABAE2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGIMarkerRegistrationViewController.swift; sourceTree = "<group>"; };
 		8A7FABB12BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGIImageDetectionViewController.swift; sourceTree = "<group>"; };
 		8A7FABB52BCE474300C64AF0 /* MarkerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerImage.swift; sourceTree = "<group>"; };
+		8A7FABB82BCE526B00C64AF0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8A7FABBC2BCE58F600C64AF0 /* VisionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAPI.swift; sourceTree = "<group>"; };
+		8A7FABC22BCE60E100C64AF0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		8A7FABC42BCE612600C64AF0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +69,14 @@
 		8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABC32BCE611C00C64AF0 /* Utils */,
 				8A7FABA72BCE3DE100C64AF0 /* App */,
 				8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */,
 				8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */,
 				8A7FABA62BCE3DB900C64AF0 /* GPTInformation */,
+				8A7FABB72BCE51D100C64AF0 /* Network */,
+				8A7FABC02BCE5E5B00C64AF0 /* Resources */,
+				8A7FABC12BCE5E6900C64AF0 /* Supports */,
 			);
 			path = "AR-GPT-ImageDetection";
 			sourceTree = "<group>";
@@ -98,9 +111,6 @@
 				8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */,
 				8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */,
 				8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */,
-				8A7FAB992BCE371500C64AF0 /* Assets.xcassets */,
-				8A7FAB9B2BCE371500C64AF0 /* LaunchScreen.storyboard */,
-				8A7FAB9E2BCE371500C64AF0 /* Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -125,6 +135,58 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABB52BCE474300C64AF0 /* MarkerImage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8A7FABB72BCE51D100C64AF0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABC62BCE637200C64AF0 /* Model */,
+				8A7FABBB2BCE58E600C64AF0 /* API */,
+				8A7FABB82BCE526B00C64AF0 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8A7FABBB2BCE58E600C64AF0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABBC2BCE58F600C64AF0 /* VisionAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8A7FABC02BCE5E5B00C64AF0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FAB992BCE371500C64AF0 /* Assets.xcassets */,
+				8A7FAB9B2BCE371500C64AF0 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8A7FABC12BCE5E6900C64AF0 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FAB9E2BCE371500C64AF0 /* Info.plist */,
+				8A7FABC22BCE60E100C64AF0 /* Config.xcconfig */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		8A7FABC32BCE611C00C64AF0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABC42BCE612600C64AF0 /* Config.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		8A7FABC62BCE637200C64AF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,8 +262,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */,
+				8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */,
 				8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */,
+				8A7FABC52BCE612600C64AF0 /* Config.swift in Sources */,
 				8A7FABB62BCE474300C64AF0 /* MarkerImage.swift in Sources */,
+				8A7FABB92BCE526B00C64AF0 /* NetworkManager.swift in Sources */,
+				8A7FABBD2BCE58F600C64AF0 /* VisionAPI.swift in Sources */,
 				8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */,
 				8A7FABAF2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift in Sources */,
 				8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */,
@@ -350,7 +416,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UYQGT8R65L;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "AR-GPT-ImageDetection/App/Info.plist";
+				INFOPLIST_FILE = "AR-GPT-ImageDetection/Supports/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -378,7 +444,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UYQGT8R65L;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "AR-GPT-ImageDetection/App/Info.plist";
+				INFOPLIST_FILE = "AR-GPT-ImageDetection/Supports/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
