@@ -19,6 +19,7 @@
 		8A7FABBD2BCE58F600C64AF0 /* VisionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABBC2BCE58F600C64AF0 /* VisionAPI.swift */; };
 		8A7FABC52BCE612600C64AF0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC42BCE612600C64AF0 /* Config.swift */; };
 		8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */; };
+		8A7FABCA2BCE69CB00C64AF0 /* MarkerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		8A7FABC22BCE60E100C64AF0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8A7FABC42BCE612600C64AF0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRequestModel.swift; sourceTree = "<group>"; };
+		8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABCB2BCE6A2B00C64AF0 /* Model */,
 				8A7FABAD2BCE417A00C64AF0 /* Controller */,
 			);
 			path = ImageDetection;
@@ -191,6 +194,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8A7FABCB2BCE6A2B00C64AF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -261,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7FABCA2BCE69CB00C64AF0 /* MarkerProvider.swift in Sources */,
 				8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */,
 				8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */,
 				8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */,
