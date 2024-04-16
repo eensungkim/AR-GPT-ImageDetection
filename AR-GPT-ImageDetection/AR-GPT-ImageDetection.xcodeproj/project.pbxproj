@@ -10,7 +10,6 @@
 		8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */; };
 		8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */; };
 		8A7FAB952BCE371400C64AF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB942BCE371400C64AF0 /* ViewController.swift */; };
-		8A7FAB982BCE371400C64AF0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB972BCE371400C64AF0 /* Base */; };
 		8A7FAB9A2BCE371500C64AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB992BCE371500C64AF0 /* Assets.xcassets */; };
 		8A7FAB9D2BCE371500C64AF0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB9C2BCE371500C64AF0 /* Base */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8A7FAB942BCE371400C64AF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8A7FAB972BCE371400C64AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8A7FAB992BCE371500C64AF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A7FAB9C2BCE371500C64AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A7FAB9E2BCE371500C64AF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +54,46 @@
 		8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */,
-				8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */,
+				8A7FABA72BCE3DE100C64AF0 /* App */,
+				8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */,
+				8A7FABA52BCE3D8F00C64AF0 /* ImageRecognition */,
+				8A7FABA62BCE3DB900C64AF0 /* VisionInformation */,
 				8A7FAB942BCE371400C64AF0 /* ViewController.swift */,
-				8A7FAB962BCE371400C64AF0 /* Main.storyboard */,
 				8A7FAB992BCE371500C64AF0 /* Assets.xcassets */,
 				8A7FAB9B2BCE371500C64AF0 /* LaunchScreen.storyboard */,
 				8A7FAB9E2BCE371500C64AF0 /* Info.plist */,
 			);
 			path = "AR-GPT-ImageDetection";
+			sourceTree = "<group>";
+		};
+		8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MarkerRegistration;
+			sourceTree = "<group>";
+		};
+		8A7FABA52BCE3D8F00C64AF0 /* ImageRecognition */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageRecognition;
+			sourceTree = "<group>";
+		};
+		8A7FABA62BCE3DB900C64AF0 /* VisionInformation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VisionInformation;
+			sourceTree = "<group>";
+		};
+		8A7FABA72BCE3DE100C64AF0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */,
+				8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +156,6 @@
 			files = (
 				8A7FAB9A2BCE371500C64AF0 /* Assets.xcassets in Resources */,
 				8A7FAB9D2BCE371500C64AF0 /* Base in Resources */,
-				8A7FAB982BCE371400C64AF0 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +175,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8A7FAB962BCE371400C64AF0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8A7FAB972BCE371400C64AF0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8A7FAB9B2BCE371500C64AF0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +317,7 @@
 				INFOPLIST_FILE = "AR-GPT-ImageDetection/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -325,7 +345,7 @@
 				INFOPLIST_FILE = "AR-GPT-ImageDetection/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
