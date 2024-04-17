@@ -39,11 +39,21 @@ extension VisionAPI {
 }
 
 extension VisionAPI {
-    func asURLRequest(data: Data) throws -> URLRequest {
+    func asURLRequest(with base64EncodedImage: String) throws -> URLRequest {
         var request = try URLRequest(url: self.asURL())
         request.httpMethod = self.method
         request.allHTTPHeaderFields = self.headerFields
-        request.httpBody = data
+        let data = VisionRequestModel(
+            model: "gpt-4-turbo",
+            messages: [
+                RequestMessage(role: "user", content: [
+                    Content(type: .text, text: "이 이미지는 어떤 정보를 담고 있지?", imageURL: nil),
+                    Content(type: .image_url, text: nil, imageURL: ImageURL(url: base64EncodedImage))
+                ])
+            ],
+            maxTokens: 2000
+        )
+        request.httpBody = try JSONEncoder().encode(data)
         return request
     }
     
