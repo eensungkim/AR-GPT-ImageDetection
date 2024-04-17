@@ -37,3 +37,20 @@ extension VisionAPI {
         }
     }
 }
+
+extension VisionAPI {
+    func asURLRequest(data: Data) throws -> URLRequest {
+        var request = try URLRequest(url: self.asURL())
+        request.httpMethod = self.method
+        request.allHTTPHeaderFields = self.headerFields
+        request.httpBody = data
+        return request
+    }
+    
+    private func asURL() throws -> URL {
+        guard let url = URL(string: self.url) else {
+            throw NetworkError.invalidURL
+        }
+        return url
+    }
+}
