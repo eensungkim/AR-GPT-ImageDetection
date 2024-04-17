@@ -20,6 +20,8 @@
 		8A7FABC52BCE612600C64AF0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC42BCE612600C64AF0 /* Config.swift */; };
 		8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */; };
 		8A7FABCA2BCE69CB00C64AF0 /* MarkerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */; };
+		8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABCC2BCF611800C64AF0 /* VisionResponseModel.swift */; };
+		8A7FABCF2BCF613400C64AF0 /* VisionCommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABCE2BCF613400C64AF0 /* VisionCommonModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		8A7FABC42BCE612600C64AF0 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRequestModel.swift; sourceTree = "<group>"; };
 		8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerProvider.swift; sourceTree = "<group>"; };
+		8A7FABCC2BCF611800C64AF0 /* VisionResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionResponseModel.swift; sourceTree = "<group>"; };
+		8A7FABCE2BCF613400C64AF0 /* VisionCommonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCommonModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */,
+				8A7FABCC2BCF611800C64AF0 /* VisionResponseModel.swift */,
+				8A7FABCE2BCF613400C64AF0 /* VisionCommonModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,8 +280,10 @@
 			files = (
 				8A7FABCA2BCE69CB00C64AF0 /* MarkerProvider.swift in Sources */,
 				8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */,
+				8A7FABCF2BCF613400C64AF0 /* VisionCommonModel.swift in Sources */,
 				8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */,
 				8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */,
+				8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */,
 				8A7FABC52BCE612600C64AF0 /* Config.swift in Sources */,
 				8A7FABB62BCE474300C64AF0 /* MarkerImage.swift in Sources */,
 				8A7FABB92BCE526B00C64AF0 /* NetworkManager.swift in Sources */,

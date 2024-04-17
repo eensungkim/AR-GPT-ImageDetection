@@ -7,23 +7,16 @@
 
 import Foundation
 
-// MARK: -
+// MARK: - VisionRequestModel
 struct VisionRequestModel: Codable {
     let model: String
     let messages: [Message]
     let maxTokens: Int
 
     enum CodingKeys: String, CodingKey {
-        case model
-        case messages
+        case model, messages
         case maxTokens = "max_tokens"
     }
-}
-
-// MARK: - Message
-struct Message: Codable {
-    let role: String
-    let content: [Content]
 }
 
 // MARK: - Content
@@ -33,8 +26,7 @@ struct Content: Codable {
     let imageURL: ImageURL?
 
     enum CodingKeys: String, CodingKey {
-        case type
-        case text
+        case type, text
         case imageURL = "image_url"
     }
 }
