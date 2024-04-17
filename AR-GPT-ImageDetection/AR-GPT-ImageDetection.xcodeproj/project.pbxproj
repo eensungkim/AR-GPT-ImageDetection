@@ -21,9 +21,9 @@
 		8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */; };
 		8A7FABCA2BCE69CB00C64AF0 /* MarkerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */; };
 		8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABCC2BCF611800C64AF0 /* VisionResponseModel.swift */; };
-		8A7FABCF2BCF613400C64AF0 /* VisionCommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABCE2BCF613400C64AF0 /* VisionCommonModel.swift */; };
 		8A7FABD22BCF669100C64AF0 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD12BCF669100C64AF0 /* NetworkError.swift */; };
 		8A7FABD62BCF6EF900C64AF0 /* VisionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD52BCF6EF900C64AF0 /* VisionAPIService.swift */; };
+		8A7FABD82BCFA61300C64AF0 /* SnapshotGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,9 +44,9 @@
 		8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRequestModel.swift; sourceTree = "<group>"; };
 		8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerProvider.swift; sourceTree = "<group>"; };
 		8A7FABCC2BCF611800C64AF0 /* VisionResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionResponseModel.swift; sourceTree = "<group>"; };
-		8A7FABCE2BCF613400C64AF0 /* VisionCommonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCommonModel.swift; sourceTree = "<group>"; };
 		8A7FABD12BCF669100C64AF0 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		8A7FABD52BCF6EF900C64AF0 /* VisionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAPIService.swift; sourceTree = "<group>"; };
+		8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +201,6 @@
 			children = (
 				8A7FABC72BCE639400C64AF0 /* VisionRequestModel.swift */,
 				8A7FABCC2BCF611800C64AF0 /* VisionResponseModel.swift */,
-				8A7FABCE2BCF613400C64AF0 /* VisionCommonModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */,
+				8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,12 +311,12 @@
 				8A7FABCA2BCE69CB00C64AF0 /* MarkerProvider.swift in Sources */,
 				8A7FABD22BCF669100C64AF0 /* NetworkError.swift in Sources */,
 				8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */,
-				8A7FABCF2BCF613400C64AF0 /* VisionCommonModel.swift in Sources */,
 				8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */,
 				8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */,
 				8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */,
 				8A7FABC52BCE612600C64AF0 /* Config.swift in Sources */,
 				8A7FABB62BCE474300C64AF0 /* MarkerImage.swift in Sources */,
+				8A7FABD82BCFA61300C64AF0 /* SnapshotGenerator.swift in Sources */,
 				8A7FABB92BCE526B00C64AF0 /* NetworkManager.swift in Sources */,
 				8A7FABBD2BCE58F600C64AF0 /* VisionAPI.swift in Sources */,
 				8A7FABD62BCF6EF900C64AF0 /* VisionAPIService.swift in Sources */,
@@ -461,6 +461,7 @@
 		};
 		8A7FABA22BCE371500C64AF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A7FABC22BCE60E100C64AF0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -489,6 +490,7 @@
 		};
 		8A7FABA32BCE371500C64AF0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A7FABC22BCE60E100C64AF0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

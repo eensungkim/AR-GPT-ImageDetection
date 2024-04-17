@@ -26,7 +26,7 @@ struct VisionResponseModel: Codable {
 // MARK: - Choice
 struct Choice: Codable {
     let index: Int
-    let message: Message
+    let message: ResponseMessage
     let logprobs: String?
     let finishReason: String
 
@@ -34,6 +34,12 @@ struct Choice: Codable {
         case index, message, logprobs
         case finishReason = "finish_reason"
     }
+}
+
+// MARK: - ResponseMessage
+struct ResponseMessage: Codable {
+    let role: String
+    let content: String
 }
 
 // MARK: - Usage
