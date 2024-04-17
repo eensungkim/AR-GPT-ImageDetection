@@ -19,7 +19,7 @@ struct MarkerImage {
     let id = UUID()
     let name: String
     let type: ImageType
-    let data: Data
+    let data: Data?
     let description: String
     let additionalInformation: String
 }
