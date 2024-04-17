@@ -43,12 +43,13 @@ extension VisionAPI {
         var request = try URLRequest(url: self.asURL())
         request.httpMethod = self.method
         request.allHTTPHeaderFields = self.headerFields
+        let imageURI = "data:image/jpeg;base64,\(base64EncodedImage)"
         let data = VisionRequestModel(
             model: "gpt-4-turbo",
             messages: [
                 RequestMessage(role: "user", content: [
                     Content(type: .text, text: "이 이미지는 어떤 정보를 담고 있지?", imageURL: nil),
-                    Content(type: .image_url, text: nil, imageURL: ImageURL(url: base64EncodedImage))
+                    Content(type: .image_url, text: nil, imageURL: ImageURL(url: imageURI))
                 ])
             ],
             maxTokens: 2000
