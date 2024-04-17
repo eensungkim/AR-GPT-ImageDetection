@@ -32,6 +32,7 @@ extension AGIImageDetectionViewController: ARSessionDelegate {
         session.delegate = self
         let configuration = ARWorldTrackingConfiguration()
         configuration.maximumNumberOfTrackedImages = 4
+        configuration.detectionImages = MarkerProvider.loadMarkerImages()
         session.run(configuration)
     }
     
