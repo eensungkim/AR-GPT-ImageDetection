@@ -39,29 +39,10 @@ extension VisionAPI {
 }
 
 extension VisionAPI {
-    func asURLRequest(with base64EncodedImage: String) throws -> URLRequest {
+    func asURLRequest(with data: VisionRequestModel) throws -> URLRequest {
         var request = try URLRequest(url: self.asURL())
         request.httpMethod = self.method
         request.allHTTPHeaderFields = self.headerFields
-        let imageURI = "data:image/jpeg;base64,\(base64EncodedImage)"
-        let data = VisionRequestModel(
-            model: APIConfig.model,
-            messages: [
-                RequestMessage(role: "user", content: [
-                    Content(
-                        type: .text,
-                        text: APIConfig.prompt,
-                        imageURL: nil
-                    ),
-                    Content(
-                        type: .image_url,
-                        text: nil,
-                        imageURL: ImageURL(url: imageURI)
-                    )
-                ])
-            ],
-            maxTokens: 2000
-        )
         request.httpBody = try JSONEncoder().encode(data)
         return request
     }
