@@ -59,10 +59,22 @@ extension ImageDetectionViewController: ARSessionDelegate {
                 guard let data = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node) else {
                     return
                 }
+                
+                let gptInformationViewController = GPTInformationViewController()
+                gptInformationViewController.modalPresentationStyle = .pageSheet
+                
+                if let sheet = gptInformationViewController.sheetPresentationController {
+                    sheet.detents = [.medium()]
+                    sheet.delegate = self
+                }
+                
+                present(gptInformationViewController, animated: true)
+                
                 let result = try await service.requestInformation(base64EncodedImage: data.base64EncodedString())
                 print(result)
-                // 모달 띄우기
-                //            present(avPlayerViewController, animated: true)
+                
+                let content = result.choices[0].message.content
+                gptInformationViewController.setText(content)
             }
         }
     }
@@ -85,7 +97,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
         
         let overlayNode = SCNNode(geometry: plane)
         overlayNode.eulerAngles.x = -.pi / 2
-        overlayNode.opacity = 0.2
+        overlayNode.opacity = 0.3
         return overlayNode
     }
     
@@ -131,3 +143,5 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
         return image
     }
 }
+
+extension ImageDetectionViewController: UISheetPresentationControllerDelegate { }
