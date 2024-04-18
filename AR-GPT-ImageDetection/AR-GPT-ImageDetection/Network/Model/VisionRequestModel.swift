@@ -17,6 +17,18 @@ struct VisionRequestModel: Codable {
         case model, messages
         case maxTokens = "max_tokens"
     }
+    
+    init(model: String, messages: [RequestMessage], maxTokens: Int) {
+        self.model = model
+        self.messages = messages
+        self.maxTokens = maxTokens
+    }
+    
+    init(messages: [RequestMessage]) {
+        self.model = APIConfig.model
+        self.messages = messages
+        self.maxTokens = 2000
+    }
 }
 
 // MARK: - RequestMessage
