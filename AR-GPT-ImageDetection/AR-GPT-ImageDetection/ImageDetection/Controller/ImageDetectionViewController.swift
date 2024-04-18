@@ -64,12 +64,18 @@ extension ImageDetectionViewController {
         present(gptInformationViewController, animated: true)
         
         let snapshot = imageDetectionView.snapshot()
-        guard let data = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node) else {
+        guard let snapshotData = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node),
+              let name = node.name,
+              let image = UIImage(named: name),
+              let referenceImageData = image.pngData() else {
             return
         }
         
         Task {
-            let result = try await service.requestInformation(with: [data.base64EncodedString()])
+            let result = try await service.requestInformation(with: [
+                referenceImageData.base64EncodedString(),
+                snapshotData.base64EncodedString()
+            ])
             let content = result.choices[0].message.content
             gptInformationViewController.setText(content)
         }
@@ -92,6 +98,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
         plane.firstMaterial?.isDoubleSided = true
         
         let overlayNode = SCNNode(geometry: plane)
+        overlayNode.name = referenceImage.name
         overlayNode.eulerAngles.x = -.pi / 2
         overlayNode.opacity = 0.3
         return overlayNode
