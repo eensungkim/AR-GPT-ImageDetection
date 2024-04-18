@@ -1,5 +1,5 @@
 //
-//  Config.swift
+//  APIConfig.swift
 //  AR-GPT-ImageDetection
 //
 //  Created by Kim EenSung on 4/16/24.
