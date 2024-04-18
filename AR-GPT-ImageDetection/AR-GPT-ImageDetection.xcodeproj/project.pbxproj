@@ -25,6 +25,7 @@
 		8A7FABD62BCF6EF900C64AF0 /* VisionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD52BCF6EF900C64AF0 /* VisionAPIService.swift */; };
 		8A7FABD82BCFA61300C64AF0 /* SnapshotGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */; };
 		8A7FABDB2BD0D26800C64AF0 /* GPTInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */; };
+		8A7FABE22BD1043A00C64AF0 /* TextImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABE12BD1043A00C64AF0 /* TextImageGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		8A7FABD52BCF6EF900C64AF0 /* VisionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAPIService.swift; sourceTree = "<group>"; };
 		8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotGenerator.swift; sourceTree = "<group>"; };
 		8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTInformationViewController.swift; sourceTree = "<group>"; };
+		8A7FABE12BD1043A00C64AF0 /* TextImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextImageGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */,
+				8A7FABE12BD1043A00C64AF0 /* TextImageGenerator.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				8A7FABB62BCE474300C64AF0 /* MarkerImage.swift in Sources */,
 				8A7FABD82BCFA61300C64AF0 /* SnapshotGenerator.swift in Sources */,
 				8A7FABB92BCE526B00C64AF0 /* NetworkManager.swift in Sources */,
+				8A7FABE22BD1043A00C64AF0 /* TextImageGenerator.swift in Sources */,
 				8A7FABBD2BCE58F600C64AF0 /* VisionAPI.swift in Sources */,
 				8A7FABD62BCF6EF900C64AF0 /* VisionAPIService.swift in Sources */,
 				8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */,

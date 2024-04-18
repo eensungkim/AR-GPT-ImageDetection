@@ -109,7 +109,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
             정의: \(metaData.description)
             설명: \(metaData.additionalInformation)
             """
-        let textImage = textToImage(drawText: text, inImage: CGSize(width: 1024, height: 512))
+        let textImage = TextImageGenerator.textToImage(drawText: text, inImage: CGSize(width: 1024, height: 512))
         plane.firstMaterial?.diffuse.contents = textImage
         
         let descriptionNode = SCNNode(geometry: plane)
@@ -117,27 +117,6 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
         descriptionNode.opacity = 1
         descriptionNode.worldPosition = .init(referenceImage.physicalSize.width, 0, 0)
         return descriptionNode
-    }
-    
-    private func textToImage(drawText text: String, inImage imageSize: CGSize) -> UIImage {
-        let renderer = UIGraphicsImageRenderer(size: imageSize)
-        let image = renderer.image { context in
-            UIColor.white.setFill()
-            context.fill(CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
-            
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .left
-            paragraphStyle.lineBreakMode = .byWordWrapping
-            
-            let attributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 30),
-                .paragraphStyle: paragraphStyle
-            ]
-            
-            let attributedText = NSAttributedString(string: text, attributes: attributes)
-            attributedText.draw(with: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height), options: .usesLineFragmentOrigin, context: nil)
-        }
-        return image
     }
 }
 
