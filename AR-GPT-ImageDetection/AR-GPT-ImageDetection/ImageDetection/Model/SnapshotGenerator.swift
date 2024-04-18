@@ -5,30 +5,46 @@
 //  Created by Kim EenSung on 4/17/24.
 //
 
-import Foundation
+import ARKit
 import SceneKit
 
 final class SnapshotGenerator {
-    func captureImage(of node: SCNNode) -> UIImage? {
-        // 새 씬 생성
-        let scene = SCNScene()
-        scene.rootNode.addChildNode(node.clone()) // 노드 복제 및 추가
-
-        // 렌더러 설정
-        let renderer = SCNRenderer(device: MTLCreateSystemDefaultDevice(), options: nil)
-        renderer.scene = scene
-        renderer.pointOfView = setupCameraNode() // 적절한 카메라 노드 설정
-
-        // 이미지 캡처
-        let imageSize = CGSize(width: 640, height: 480) // 적당한 이미지 크기 설정
-        let image = renderer.snapshot(atTime: 0, with: imageSize, antialiasingMode: .none)
-        return image
+    func generateSnapshotData(_ image: UIImage, in view: ARSCNView, of node: SCNNode) -> Data? {
+        let nodeFrame = calculateFrame(in: view, of: node)
+        if let croppedImage = cropImage(to: nodeFrame, from: image) {
+            return croppedImage.pngData()
+        }
+        return nil
     }
+    
+    private func calculateFrame(in view: ARSCNView, of node: SCNNode) -> CGRect {
+        let scale = UIScreen.main.scale
+        let (min, max) = node.boundingBox
+        let minVec = SCNVector3(min.x, min.y, min.z)
+        let maxVec = SCNVector3(max.x, max.y, max.z)
+        
+        let minScreenPoint = view.projectPoint(node.convertPosition(minVec, to: nil))
+        let maxScreenPoint = view.projectPoint(node.convertPosition(maxVec, to: nil))
+        
+        let x = CGFloat(minScreenPoint.x) * scale
+        let y = CGFloat(minScreenPoint.y) * scale
+        let width = CGFloat(maxScreenPoint.x - minScreenPoint.x) * scale
+        let height = CGFloat(maxScreenPoint.y - minScreenPoint.y) * scale
+        
+        return CGRect(x: x, y: y, width: width, height: height)
+    }
+    
+    private func cropImage(to rect: CGRect, from originalImage: UIImage) -> UIImage? {
+        guard let cgImage = originalImage.cgImage else { return nil }
+        let contextImage = UIImage(cgImage: cgImage)
+        let newCropRect = CGRect(x: rect.minX,
+                                 y: rect.minY,
+                                 width: rect.width,
+                                 height: rect.height)
 
-    func setupCameraNode() -> SCNNode {
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15) // 카메라 위치 조정 필요
-        return cameraNode
+        guard let croppedCgImage = contextImage.cgImage?.cropping(to: newCropRect) else { return nil }
+        let croppedImage = UIImage(cgImage: croppedCgImage)
+        
+        return croppedImage
     }
 }

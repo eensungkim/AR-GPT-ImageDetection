@@ -6,7 +6,6 @@
 //
 
 import ARKit
-import SpriteKit
 import UIKit
 
 /// AGI 앱의 이미지 인식 탭을 담당하는 컨트롤러
@@ -55,18 +54,16 @@ extension AGIImageDetectionViewController: ARSessionDelegate {
         let hitResults = imageDetectionView.hitTest(location, options: [:])
         if let firstHit = hitResults.first {
             let node = firstHit.node
-            // 비동기 네트워크 작업, 노드에서 어떻게 필요한 정보 추출해낼지 고민 필요
             Task {
-                print("실행되나요?")
-                let snapshot = snapshotGenerator.captureImage(of: node)
-                guard let imageData = snapshot?.pngData() else {
+                let snapshot = imageDetectionView.snapshot()
+                guard let data = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node) else {
                     return
                 }
-                let result = try await service.requestInformation(base64EncodedImage: imageData.base64EncodedString())
+                let result = try await service.requestInformation(base64EncodedImage: data.base64EncodedString())
                 print(result)
+                // 모달 띄우기
+                //            present(avPlayerViewController, animated: true)
             }
-            // 모달 띄우기
-            //            present(avPlayerViewController, animated: true)
         }
     }
 }
@@ -76,11 +73,23 @@ extension AGIImageDetectionViewController: ARSCNViewDelegate {
     func renderer(_ renderer: any SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let imageAnchor = anchor as? ARImageAnchor {
             let overlayNode = createOverlayNode(for: imageAnchor.referenceImage)
+            let descriptionNode = createDescriptionNode(for: imageAnchor.referenceImage)
             node.addChildNode(overlayNode)
+            node.addChildNode(descriptionNode)
         }
     }
     
     private func createOverlayNode(for referenceImage: ARReferenceImage) -> SCNNode {
+        let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
+        plane.firstMaterial?.isDoubleSided = true
+        
+        let overlayNode = SCNNode(geometry: plane)
+        overlayNode.eulerAngles.x = -.pi / 2
+        overlayNode.opacity = 0.2
+        return overlayNode
+    }
+    
+    private func createDescriptionNode(for referenceImage: ARReferenceImage) -> SCNNode {
         let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
         plane.firstMaterial?.isDoubleSided = true
         
@@ -94,11 +103,11 @@ extension AGIImageDetectionViewController: ARSCNViewDelegate {
         let textImage = textToImage(drawText: text, inImage: CGSize(width: 1024, height: 512))
         plane.firstMaterial?.diffuse.contents = textImage
         
-        let overlayNode = SCNNode(geometry: plane)
-        overlayNode.eulerAngles.x = -.pi / 2
-        overlayNode.opacity = 1
-        overlayNode.worldPosition = .init(referenceImage.physicalSize.width, 0, 0)
-        return overlayNode
+        let descriptionNode = SCNNode(geometry: plane)
+        descriptionNode.eulerAngles.x = -.pi / 2
+        descriptionNode.opacity = 1
+        descriptionNode.worldPosition = .init(referenceImage.physicalSize.width, 0, 0)
+        return descriptionNode
     }
     
     private func textToImage(drawText text: String, inImage imageSize: CGSize) -> UIImage {
