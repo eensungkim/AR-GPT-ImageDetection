@@ -12,8 +12,8 @@
 		8A7FAB9A2BCE371500C64AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB992BCE371500C64AF0 /* Assets.xcassets */; };
 		8A7FAB9D2BCE371500C64AF0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB9C2BCE371500C64AF0 /* Base */; };
 		8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */; };
-		8A7FABAF2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABAE2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift */; };
-		8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABB12BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift */; };
+		8A7FABAF2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABAE2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift */; };
+		8A7FABB22BCE41BD00C64AF0 /* ImageDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABB12BCE41BD00C64AF0 /* ImageDetectionViewController.swift */; };
 		8A7FABB62BCE474300C64AF0 /* MarkerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABB52BCE474300C64AF0 /* MarkerImage.swift */; };
 		8A7FABB92BCE526B00C64AF0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABB82BCE526B00C64AF0 /* NetworkManager.swift */; };
 		8A7FABBD2BCE58F600C64AF0 /* VisionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABBC2BCE58F600C64AF0 /* VisionAPI.swift */; };
@@ -24,6 +24,7 @@
 		8A7FABD22BCF669100C64AF0 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD12BCF669100C64AF0 /* NetworkError.swift */; };
 		8A7FABD62BCF6EF900C64AF0 /* VisionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD52BCF6EF900C64AF0 /* VisionAPIService.swift */; };
 		8A7FABD82BCFA61300C64AF0 /* SnapshotGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */; };
+		8A7FABDB2BD0D26800C64AF0 /* GPTInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +35,8 @@
 		8A7FAB9C2BCE371500C64AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A7FAB9E2BCE371500C64AF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGITabBarController.swift; sourceTree = "<group>"; };
-		8A7FABAE2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGIMarkerRegistrationViewController.swift; sourceTree = "<group>"; };
-		8A7FABB12BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGIImageDetectionViewController.swift; sourceTree = "<group>"; };
+		8A7FABAE2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerRegistrationViewController.swift; sourceTree = "<group>"; };
+		8A7FABB12BCE41BD00C64AF0 /* ImageDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetectionViewController.swift; sourceTree = "<group>"; };
 		8A7FABB52BCE474300C64AF0 /* MarkerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerImage.swift; sourceTree = "<group>"; };
 		8A7FABB82BCE526B00C64AF0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8A7FABBC2BCE58F600C64AF0 /* VisionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAPI.swift; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		8A7FABD12BCF669100C64AF0 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		8A7FABD52BCF6EF900C64AF0 /* VisionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAPIService.swift; sourceTree = "<group>"; };
 		8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotGenerator.swift; sourceTree = "<group>"; };
+		8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTInformationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		8A7FABA62BCE3DB900C64AF0 /* GPTInformation */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABD92BD0D22A00C64AF0 /* Controller */,
 			);
 			path = GPTInformation;
 			sourceTree = "<group>";
@@ -129,7 +132,7 @@
 		8A7FABAC2BCE416E00C64AF0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABAE2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift */,
+				8A7FABAE2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,7 +140,7 @@
 		8A7FABAD2BCE417A00C64AF0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABB12BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift */,
+				8A7FABB12BCE41BD00C64AF0 /* ImageDetectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -238,6 +241,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		8A7FABD92BD0D22A00C64AF0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -309,10 +320,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A7FABCA2BCE69CB00C64AF0 /* MarkerProvider.swift in Sources */,
+				8A7FABDB2BD0D26800C64AF0 /* GPTInformationViewController.swift in Sources */,
 				8A7FABD22BCF669100C64AF0 /* NetworkError.swift in Sources */,
 				8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */,
 				8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */,
-				8A7FABB22BCE41BD00C64AF0 /* AGIImageDetectionViewController.swift in Sources */,
+				8A7FABB22BCE41BD00C64AF0 /* ImageDetectionViewController.swift in Sources */,
 				8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */,
 				8A7FABC52BCE612600C64AF0 /* Config.swift in Sources */,
 				8A7FABB62BCE474300C64AF0 /* MarkerImage.swift in Sources */,
@@ -321,7 +333,7 @@
 				8A7FABBD2BCE58F600C64AF0 /* VisionAPI.swift in Sources */,
 				8A7FABD62BCF6EF900C64AF0 /* VisionAPIService.swift in Sources */,
 				8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */,
-				8A7FABAF2BCE41A200C64AF0 /* AGIMarkerRegistrationViewController.swift in Sources */,
+				8A7FABAF2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift in Sources */,
 				8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

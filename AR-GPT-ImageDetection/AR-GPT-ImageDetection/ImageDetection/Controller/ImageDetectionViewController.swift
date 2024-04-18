@@ -1,5 +1,5 @@
 //
-//  AGIImageDetectionViewController.swift
+//  ImageDetectionViewController.swift
 //  AR-GPT-ImageDetection
 //
 //  Created by Kim EenSung on 4/16/24.
@@ -9,7 +9,7 @@ import ARKit
 import UIKit
 
 /// AGI 앱의 이미지 인식 탭을 담당하는 컨트롤러
-final class AGIImageDetectionViewController: UIViewController {
+final class ImageDetectionViewController: UIViewController {
     private let session = ARSession()
     private let imageDetectionView = ARSCNView()
     private let service = VisionAPIService()
@@ -30,7 +30,7 @@ final class AGIImageDetectionViewController: UIViewController {
 }
 
 // MARK: - Configuration
-extension AGIImageDetectionViewController: ARSessionDelegate {
+extension ImageDetectionViewController: ARSessionDelegate {
     private func configureSession() {
         session.delegate = self
         let configuration = ARWorldTrackingConfiguration()
@@ -69,7 +69,7 @@ extension AGIImageDetectionViewController: ARSessionDelegate {
 }
 
 // MARK: - ARSCNViewDelegate
-extension AGIImageDetectionViewController: ARSCNViewDelegate {
+extension ImageDetectionViewController: ARSCNViewDelegate {
     func renderer(_ renderer: any SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let imageAnchor = anchor as? ARImageAnchor {
             let overlayNode = createOverlayNode(for: imageAnchor.referenceImage)
