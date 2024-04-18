@@ -6,7 +6,6 @@
 //
 
 import ARKit
-import Foundation
 
 struct MarkerProvider {
     static var markerImageSet: [String: MarkerImage] = [
