@@ -18,7 +18,7 @@ extension VisionAPI {
         case .base64:
             return [
                 "Content-Type": "application/json",
-                "Authorization": "Bearer \(Config.openAIAPIKey)"
+                "Authorization": "Bearer \(APIConfig.openAIAPIKey)"
             ]
         }
     }
@@ -45,11 +45,19 @@ extension VisionAPI {
         request.allHTTPHeaderFields = self.headerFields
         let imageURI = "data:image/jpeg;base64,\(base64EncodedImage)"
         let data = VisionRequestModel(
-            model: "gpt-4-turbo",
+            model: APIConfig.model,
             messages: [
                 RequestMessage(role: "user", content: [
-                    Content(type: .text, text: "이 이미지는 어떤 정보를 담고 있지?", imageURL: nil),
-                    Content(type: .image_url, text: nil, imageURL: ImageURL(url: imageURI))
+                    Content(
+                        type: .text,
+                        text: APIConfig.prompt,
+                        imageURL: nil
+                    ),
+                    Content(
+                        type: .image_url,
+                        text: nil,
+                        imageURL: ImageURL(url: imageURI)
+                    )
                 ])
             ],
             maxTokens: 2000

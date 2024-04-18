@@ -81,7 +81,6 @@
 		8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABC32BCE611C00C64AF0 /* Utils */,
 				8A7FABA72BCE3DE100C64AF0 /* App */,
 				8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */,
 				8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */,
@@ -156,6 +155,7 @@
 		8A7FABB72BCE51D100C64AF0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABC32BCE611C00C64AF0 /* Utils */,
 				8A7FABD32BCF6ECC00C64AF0 /* Foundation */,
 				8A7FABD42BCF6ED500C64AF0 /* Service */,
 				8A7FABBB2BCE58E600C64AF0 /* API */,
