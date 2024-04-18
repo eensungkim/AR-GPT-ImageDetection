@@ -71,7 +71,6 @@ extension ImageDetectionViewController: ARSessionDelegate {
                 present(gptInformationViewController, animated: true)
                 
                 let result = try await service.requestInformation(base64EncodedImage: data.base64EncodedString())
-                print(result)
                 
                 let content = result.choices[0].message.content
                 gptInformationViewController.setText(content)

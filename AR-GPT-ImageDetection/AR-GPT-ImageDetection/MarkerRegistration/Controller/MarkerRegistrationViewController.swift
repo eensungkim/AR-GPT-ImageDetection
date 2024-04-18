@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MarkerRegistrationViewController: UIViewController {
+final class MarkerRegistrationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

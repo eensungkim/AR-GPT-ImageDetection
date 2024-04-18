@@ -18,7 +18,6 @@ final class VisionAPIService {
     
     func requestInformation(imageURL: String) async throws -> VisionResponseModel {
         let request = try VisionAPI.base64.asURLRequest(with: imageURL)
-        print(String(data: request.httpBody!, encoding: .utf8)!)
         let response: VisionResponseModel = try await manager.request(request)
         return response
     }
