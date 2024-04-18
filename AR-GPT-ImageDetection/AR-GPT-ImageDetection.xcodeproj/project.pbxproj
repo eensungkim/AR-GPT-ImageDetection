@@ -104,6 +104,7 @@
 		8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABE02BD103AA00C64AF0 /* Utility */,
 				8A7FABCB2BCE6A2B00C64AF0 /* Model */,
 				8A7FABAD2BCE417A00C64AF0 /* Controller */,
 			);
@@ -155,7 +156,7 @@
 		8A7FABB72BCE51D100C64AF0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABC32BCE611C00C64AF0 /* Utils */,
+				8A7FABC32BCE611C00C64AF0 /* Utility */,
 				8A7FABD32BCF6ECC00C64AF0 /* Foundation */,
 				8A7FABD42BCF6ED500C64AF0 /* Service */,
 				8A7FABBB2BCE58E600C64AF0 /* API */,
@@ -191,12 +192,12 @@
 			path = Supports;
 			sourceTree = "<group>";
 		};
-		8A7FABC32BCE611C00C64AF0 /* Utils */ = {
+		8A7FABC32BCE611C00C64AF0 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				8A7FABC42BCE612600C64AF0 /* APIConfig.swift */,
 			);
-			path = Utils;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		8A7FABC62BCE637200C64AF0 /* Model */ = {
@@ -212,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABC92BCE69CB00C64AF0 /* MarkerProvider.swift */,
-				8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +247,14 @@
 				8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		8A7FABE02BD103AA00C64AF0 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
