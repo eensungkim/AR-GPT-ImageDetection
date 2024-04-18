@@ -52,27 +52,26 @@ extension ImageDetectionViewController: ARSessionDelegate {
         let hitResults = imageDetectionView.hitTest(location, options: [:])
         if let firstHit = hitResults.first {
             let node = firstHit.node
-            Task {
-                let snapshot = imageDetectionView.snapshot()
-                guard let data = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node) else {
-                    return
-                }
-                
-                let gptInformationViewController = GPTInformationViewController()
-                gptInformationViewController.modalPresentationStyle = .pageSheet
-                
-                if let sheet = gptInformationViewController.sheetPresentationController {
-                    sheet.detents = [.medium()]
-                    sheet.delegate = self
-                }
-                
-                present(gptInformationViewController, animated: true)
-                
-                let result = try await service.requestInformation(with: [data.base64EncodedString()])
-                
-                let content = result.choices[0].message.content
-                gptInformationViewController.setText(content)
-            }
+            presentInformation(node: node)
+        }
+    }
+}
+
+extension ImageDetectionViewController {
+    private func presentInformation(node: SCNNode) {
+        let gptInformationViewController = GPTInformationViewController()
+        gptInformationViewController.setupModalBehavior(delegate: self)
+        present(gptInformationViewController, animated: true)
+        
+        let snapshot = imageDetectionView.snapshot()
+        guard let data = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node) else {
+            return
+        }
+        
+        Task {
+            let result = try await service.requestInformation(with: [data.base64EncodedString()])
+            let content = result.choices[0].message.content
+            gptInformationViewController.setText(content)
         }
     }
 }

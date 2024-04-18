@@ -24,6 +24,12 @@ final class GPTInformationViewController: UIViewController {
 }
 
 extension GPTInformationViewController {
+    func setupModalBehavior(delegate: (any UISheetPresentationControllerDelegate)?) {
+        modalPresentationStyle = .pageSheet
+        sheetPresentationController?.detents = [.medium()]
+        sheetPresentationController?.delegate = delegate
+    }
+    
     private func configureUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(loadingIndicatorView)
