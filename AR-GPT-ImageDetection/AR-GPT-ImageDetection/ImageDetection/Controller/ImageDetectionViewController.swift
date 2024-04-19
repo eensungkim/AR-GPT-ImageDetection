@@ -10,14 +10,12 @@ import UIKit
 
 /// AGI 앱의 이미지 인식 탭을 담당하는 컨트롤러
 final class ImageDetectionViewController: UIViewController {
-    private let session = ARSession()
     private let imageDetectionView = ARSCNView()
     private let service = VisionAPIService()
     private let snapshotGenerator = SnapshotGenerator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSession()
         configureImageDetectionView()
         addGesture()
     }
@@ -29,17 +27,15 @@ final class ImageDetectionViewController: UIViewController {
 
 // MARK: - Configuration
 extension ImageDetectionViewController: ARSessionDelegate {
-    private func configureSession() {
-        session.delegate = self
+    private func configureImageDetectionView() {
+        imageDetectionView.delegate = self
+        imageDetectionView.session.delegate = self
+        
         let configuration = ARWorldTrackingConfiguration()
         configuration.maximumNumberOfTrackedImages = 4
         configuration.detectionImages = MarkerProvider.loadMarkerImages()
-        session.run(configuration)
-    }
-    
-    private func configureImageDetectionView() {
-        imageDetectionView.delegate = self
-        imageDetectionView.session = session
+        
+        imageDetectionView.session.run(configuration)
     }
     
     private func addGesture() {
