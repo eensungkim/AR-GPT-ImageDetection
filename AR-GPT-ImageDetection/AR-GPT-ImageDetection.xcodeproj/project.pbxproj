@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A76D3F82BD25DC1000DFA8B /* ViewFinderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D3F72BD25DC1000DFA8B /* ViewFinderImage.swift */; };
 		8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */; };
 		8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */; };
 		8A7FAB9A2BCE371500C64AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB992BCE371500C64AF0 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A76D3F72BD25DC1000DFA8B /* ViewFinderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinderImage.swift; sourceTree = "<group>"; };
 		8A7FAB8D2BCE371400C64AF0 /* AR-GPT-ImageDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-GPT-ImageDetection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			children = (
 				8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */,
 				8A7FABE12BD1043A00C64AF0 /* TextImageGenerator.swift */,
+				8A76D3F72BD25DC1000DFA8B /* ViewFinderImage.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				8A7FABDB2BD0D26800C64AF0 /* GPTInformationViewController.swift in Sources */,
 				8A7FABD22BCF669100C64AF0 /* NetworkError.swift in Sources */,
 				8A7FABA92BCE3F2300C64AF0 /* AGITabBarController.swift in Sources */,
+				8A76D3F82BD25DC1000DFA8B /* ViewFinderImage.swift in Sources */,
 				8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */,
 				8A7FABB22BCE41BD00C64AF0 /* ImageDetectionViewController.swift in Sources */,
 				8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */,

@@ -90,13 +90,17 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
     }
     
     private func createOverlayNode(for referenceImage: ARReferenceImage) -> SCNNode {
-        let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
+        let scaleFactor: CGFloat = 1.3
+        let plane = SCNPlane(width: referenceImage.physicalSize.width * scaleFactor, height: referenceImage.physicalSize.height * scaleFactor)
+        if let image = ViewFinderImage.viewfinder {
+            plane.firstMaterial?.diffuse.contents = image
+        }
         plane.firstMaterial?.isDoubleSided = true
         
         let overlayNode = SCNNode(geometry: plane)
         overlayNode.name = referenceImage.name
         overlayNode.eulerAngles.x = -.pi / 2
-        overlayNode.opacity = 0.3
+        overlayNode.opacity = 1
         return overlayNode
     }
     
