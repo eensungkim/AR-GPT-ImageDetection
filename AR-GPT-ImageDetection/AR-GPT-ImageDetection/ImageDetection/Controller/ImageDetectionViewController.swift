@@ -92,7 +92,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
     private func createOverlayNode(for referenceImage: ARReferenceImage) -> SCNNode {
         let scaleFactor: CGFloat = 1.3
         let plane = SCNPlane(width: referenceImage.physicalSize.width * scaleFactor, height: referenceImage.physicalSize.height * scaleFactor)
-        if let image = ViewFinderImage.viewfinder {
+        if let image = ColoredSymbolProvider.viewfinder {
             plane.firstMaterial?.diffuse.contents = image
         }
         plane.firstMaterial?.isDoubleSided = true
