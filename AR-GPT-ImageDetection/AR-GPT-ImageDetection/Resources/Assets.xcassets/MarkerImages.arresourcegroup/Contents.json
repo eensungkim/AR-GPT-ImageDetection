@@ -5,6 +5,9 @@
   },
   "resources" : [
     {
+      "filename" : "googleLogo.arreferenceimage"
+    },
+    {
       "filename" : "qrCode.arreferenceimage"
     },
     {

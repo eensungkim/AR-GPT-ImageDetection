@@ -22,7 +22,13 @@ struct MarkerProvider {
             data: nil,
             description: "Connect",
             additionalInformation: "연결한다는 의미를 담은 영단어입니다."
-        )
+        ),
+        "googleLogo": MarkerImage(
+            name: "googleLogo",
+            type: .logo,
+            data: nil,
+            description: "구글 로고",
+            additionalInformation: "원형의 구글 로고입니다.")
     ]
     
     static func loadMarkerImages() -> Set<ARReferenceImage> {
