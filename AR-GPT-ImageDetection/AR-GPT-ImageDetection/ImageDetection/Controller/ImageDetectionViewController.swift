@@ -6,7 +6,6 @@
 //
 
 import ARKit
-import UIKit
 
 /// AGI 앱의 이미지 인식 탭을 담당하는 컨트롤러
 final class ImageDetectionViewController: UIViewController {

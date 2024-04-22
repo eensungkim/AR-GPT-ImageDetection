@@ -6,7 +6,6 @@
 //
 
 import ARKit
-import SceneKit
 
 final class SnapshotGenerator: SnapshotCreatable {
     func generateSnapshotData(_ image: UIImage, in view: ARSCNView, of node: SCNNode) -> Data? {
