@@ -19,20 +19,15 @@ final class MarkerImageManager {
             let markerImage = try self.container.viewContext.fetch(MarkerImageMO.fetchRequest()) as! [MarkerImageMO]
             let result: [MarkerImage] = markerImage.compactMap { marker in
                 guard let id = marker.id,
-                      let name = marker.name,
-                      let type = marker.type,
-                      let data = marker.data,
-                      let description = marker.information,
-                      let additionalInformation = marker.additionalInformation else {
+                      let name = marker.name else {
                     return nil
                 }
                 return MarkerImage(
                     id: id,
                     name: name,
-                    type: type,
-                    data: data,
-                    description: description,
-                    additionalInformation: additionalInformation
+                    base64Data: marker.data ?? "Unknown",
+                    description: marker.information ?? "",
+                    additionalInformation: marker.additionalInformation ?? ""
                 )
             }
             return result
@@ -53,7 +48,6 @@ final class MarkerImageManager {
         markerImage.setValue(marker.additionalInformation, forKey: "additionalInformation")
         markerImage.setValue(marker.data, forKey: "data")
         markerImage.setValue(marker.id, forKey: "id")
-        markerImage.setValue(marker.type.rawValue, forKey: "type")
         
         do {
             try self.container.viewContext.save()
