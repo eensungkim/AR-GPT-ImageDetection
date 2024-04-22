@@ -11,6 +11,11 @@
 		8A76D3FC2BD5EA3C000DFA8B /* SnapshotCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D3FB2BD5EA3C000DFA8B /* SnapshotCreatable.swift */; };
 		8A76D3FF2BD5EAEB000DFA8B /* TextImageCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D3FE2BD5EAEB000DFA8B /* TextImageCreatable.swift */; };
 		8A76D4032BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4022BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift */; };
+		8A76D4062BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4042BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld */; };
+		8A76D4082BD5F73F000DFA8B /* MarkerImageCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4072BD5F73F000DFA8B /* MarkerImageCoreData.swift */; };
+		8A76D40B2BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4092BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift */; };
+		8A76D40C2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D40A2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift */; };
+		8A76D40F2BD6228A000DFA8B /* MarkerImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D40E2BD6228A000DFA8B /* MarkerImageManager.swift */; };
 		8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */; };
 		8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */; };
 		8A7FAB9A2BCE371500C64AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB992BCE371500C64AF0 /* Assets.xcassets */; };
@@ -37,6 +42,11 @@
 		8A76D3FB2BD5EA3C000DFA8B /* SnapshotCreatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreatable.swift; sourceTree = "<group>"; };
 		8A76D3FE2BD5EAEB000DFA8B /* TextImageCreatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextImageCreatable.swift; sourceTree = "<group>"; };
 		8A76D4022BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSymbolProtocol.swift; sourceTree = "<group>"; };
+		8A76D4052BD5F031000DFA8B /* MarkerImageModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MarkerImageModel.xcdatamodel; sourceTree = "<group>"; };
+		8A76D4072BD5F73F000DFA8B /* MarkerImageCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerImageCoreData.swift; sourceTree = "<group>"; };
+		8A76D4092BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkerImageMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8A76D40A2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkerImageMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8A76D40E2BD6228A000DFA8B /* MarkerImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerImageManager.swift; sourceTree = "<group>"; };
 		8A7FAB8D2BCE371400C64AF0 /* AR-GPT-ImageDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-GPT-ImageDetection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,9 +102,19 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		8A76D40D2BD61FB8000DFA8B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8A76D40E2BD6228A000DFA8B /* MarkerImageManager.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		8A7FAB842BCE371400C64AF0 = {
 			isa = PBXGroup;
 			children = (
+				8A76D4092BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift */,
+				8A76D40A2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift */,
 				8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */,
 				8A7FAB8E2BCE371400C64AF0 /* Products */,
 			);
@@ -125,6 +145,7 @@
 		8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */ = {
 			isa = PBXGroup;
 			children = (
+				8A76D40D2BD61FB8000DFA8B /* Utility */,
 				8A7FABB42BCE473200C64AF0 /* Model */,
 				8A7FABAC2BCE416E00C64AF0 /* Controller */,
 			);
@@ -179,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABB52BCE474300C64AF0 /* MarkerImage.swift */,
+				8A76D4042BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld */,
+				8A76D4072BD5F73F000DFA8B /* MarkerImageCoreData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -358,6 +381,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A76D40B2BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift in Sources */,
+				8A76D40C2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift in Sources */,
 				8A7FABCA2BCE69CB00C64AF0 /* MarkerProvider.swift in Sources */,
 				8A7FABDB2BD0D26800C64AF0 /* GPTInformationViewController.swift in Sources */,
 				8A76D4032BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift in Sources */,
@@ -367,6 +392,7 @@
 				8A76D3F82BD25DC1000DFA8B /* ColoredSymbolProvider.swift in Sources */,
 				8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */,
 				8A7FABB22BCE41BD00C64AF0 /* ImageDetectionViewController.swift in Sources */,
+				8A76D4082BD5F73F000DFA8B /* MarkerImageCoreData.swift in Sources */,
 				8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */,
 				8A7FABC52BCE612600C64AF0 /* APIConfig.swift in Sources */,
 				8A76D3FF2BD5EAEB000DFA8B /* TextImageCreatable.swift in Sources */,
@@ -377,6 +403,8 @@
 				8A7FABBD2BCE58F600C64AF0 /* VisionAPI.swift in Sources */,
 				8A7FABD62BCF6EF900C64AF0 /* VisionAPIService.swift in Sources */,
 				8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */,
+				8A76D4062BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld in Sources */,
+				8A76D40F2BD6228A000DFA8B /* MarkerImageManager.swift in Sources */,
 				8A7FABAF2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift in Sources */,
 				8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */,
 			);
@@ -595,6 +623,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8A76D4042BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8A76D4052BD5F031000DFA8B /* MarkerImageModel.xcdatamodel */,
+			);
+			currentVersion = 8A76D4052BD5F031000DFA8B /* MarkerImageModel.xcdatamodel */;
+			name = MarkerImageModel.xcdatamodeld;
+			path = "/Users/kimeensung/Desktop/iOS_Bootcamp/AR-GPT-ImageDetection/AR-GPT-ImageDetection/AR-GPT-ImageDetection/MarkerRegistration/Model/MarkerImageModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8A7FAB852BCE371400C64AF0 /* Project object */;
 }
