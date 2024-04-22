@@ -8,7 +8,7 @@
 import ARKit
 import SceneKit
 
-final class SnapshotGenerator {
+final class SnapshotGenerator: SnapshotCreatable {
     func generateSnapshotData(_ image: UIImage, in view: ARSCNView, of node: SCNNode) -> Data? {
         let nodeFrame = calculateFrame(in: view, of: node)
         if let croppedImage = cropImage(to: nodeFrame, from: image) {

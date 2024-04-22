@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct TextImageGenerator {
-    static func textToImage(drawText text: String, inImage imageSize: CGSize) -> UIImage {
+struct TextImageGenerator: TextImageCreatable {
+    func textToImage(drawText text: String, inImage imageSize: CGSize) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: imageSize)
         let image = renderer.image { context in
             UIColor.white.setFill()

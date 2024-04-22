@@ -27,7 +27,11 @@ extension AGITabBarController {
         let markerRegistrationController = MarkerRegistrationViewController()
         markerRegistrationController.tabBarItem = Tab.registration.tabBarItem
         
-        let imageDetectionController = ImageDetectionViewController()
+        let imageDetectionController = ImageDetectionViewController(
+            snapshotGenerator: SnapshotGenerator(),
+            textImageGenerator: TextImageGenerator(),
+            coloredSymbolProvider: ColoredSymbolProvider()
+        )
         imageDetectionController.tabBarItem = Tab.detection.tabBarItem
         
         setViewControllers([markerRegistrationController, imageDetectionController], animated: true)

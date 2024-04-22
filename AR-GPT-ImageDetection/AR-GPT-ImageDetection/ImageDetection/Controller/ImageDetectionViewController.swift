@@ -12,7 +12,9 @@ import UIKit
 final class ImageDetectionViewController: UIViewController {
     private let imageDetectionView = ARSCNView()
     private let service = VisionAPIService()
-    private let snapshotGenerator = SnapshotGenerator()
+    private let snapshotGenerator: SnapshotCreatable
+    private let textImageGenerator: TextImageCreatable
+    private let coloredSymbolProvider: ColoredSymbolProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,21 @@ final class ImageDetectionViewController: UIViewController {
     
     override func loadView() {
         view = imageDetectionView
+    }
+    
+    init(
+        snapshotGenerator: SnapshotCreatable,
+        textImageGenerator: TextImageCreatable,
+        coloredSymbolProvider: ColoredSymbolProtocol
+    ) {
+        self.snapshotGenerator = snapshotGenerator
+        self.textImageGenerator = textImageGenerator
+        self.coloredSymbolProvider = coloredSymbolProvider
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -92,7 +109,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
     private func createOverlayNode(for referenceImage: ARReferenceImage) -> SCNNode {
         let scaleFactor: CGFloat = 1.3
         let plane = SCNPlane(width: referenceImage.physicalSize.width * scaleFactor, height: referenceImage.physicalSize.height * scaleFactor)
-        if let image = ColoredSymbolProvider.viewfinder {
+        if let image = coloredSymbolProvider.viewfinder {
             plane.firstMaterial?.diffuse.contents = image
         }
         plane.firstMaterial?.isDoubleSided = true
@@ -115,7 +132,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
             정의: \(metaData.description)
             설명: \(metaData.additionalInformation)
             """
-        let textImage = TextImageGenerator.textToImage(drawText: text, inImage: CGSize(width: 1024, height: 512))
+        let textImage = textImageGenerator.textToImage(drawText: text, inImage: CGSize(width: 1024, height: 512))
         plane.firstMaterial?.diffuse.contents = textImage
         
         let descriptionNode = SCNNode(geometry: plane)
