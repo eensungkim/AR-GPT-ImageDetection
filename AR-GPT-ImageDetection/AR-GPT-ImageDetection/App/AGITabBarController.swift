@@ -24,8 +24,8 @@ final class AGITabBarController: UITabBarController {
 // MARK: - Configuration
 extension AGITabBarController {
     private func configureViewControllers() {
-        let markerRegistrationController = MarkerRegistrationViewController()
-        markerRegistrationController.tabBarItem = Tab.registration.tabBarItem
+        let markerImageCollectionViewController = MarkerImageCollectionViewController()
+        markerImageCollectionViewController.tabBarItem = Tab.registration.tabBarItem
         
         let imageDetectionController = ImageDetectionViewController(
             snapshotGenerator: SnapshotGenerator(),
@@ -34,7 +34,7 @@ extension AGITabBarController {
         )
         imageDetectionController.tabBarItem = Tab.detection.tabBarItem
         
-        setViewControllers([markerRegistrationController, imageDetectionController], animated: true)
+        setViewControllers([markerImageCollectionViewController, imageDetectionController], animated: true)
     }
 }
 
