@@ -126,12 +126,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8A7FAB842BCE371400C64AF0 = {
+		8A76D41C2BD799CC000DFA8B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				8A76D4042BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld */,
 				8A76D4192BD79795000DFA8B /* MarkerImageMO+Mapping.swift */,
 				8A76D4092BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift */,
 				8A76D40A2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8A7FAB842BCE371400C64AF0 = {
+			isa = PBXGroup;
+			children = (
+				8A76D41C2BD799CC000DFA8B /* CoreData */,
 				8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */,
 				8A7FAB8E2BCE371400C64AF0 /* Products */,
 			);
@@ -220,7 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABB52BCE474300C64AF0 /* MarkerImage.swift */,
-				8A76D4042BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld */,
 				8A76D4072BD5F73F000DFA8B /* MarkerImageCoreData.swift */,
 			);
 			path = Model;
@@ -655,8 +663,7 @@
 				8A76D4052BD5F031000DFA8B /* MarkerImageModel.xcdatamodel */,
 			);
 			currentVersion = 8A76D4052BD5F031000DFA8B /* MarkerImageModel.xcdatamodel */;
-			name = MarkerImageModel.xcdatamodeld;
-			path = "/Users/kimeensung/Desktop/iOS_Bootcamp/AR-GPT-ImageDetection/AR-GPT-ImageDetection/AR-GPT-ImageDetection/MarkerRegistration/Model/MarkerImageModel.xcdatamodeld";
+			path = MarkerImageModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
