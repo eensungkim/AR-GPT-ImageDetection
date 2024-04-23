@@ -7,18 +7,28 @@
 
 import UIKit
 
-final class MarkerImageCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+final class MarkerImageCollectionViewController: UIViewController {
     private let markerImageManager = MarkerImageManager(container: MarkerImageCoreData.shared.persistentContainer)
-    private lazy var markerImages: [MarkerImage] = markerImageManager.fetchMarkerImage()  // MarkerImage 배열
+    private lazy var markerImages: [MarkerImage] = markerImageManager.fetchMarkerImage()
     
-    let collectionView: UICollectionView = {
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)  // 셀 크기 설정
-        layout.minimumInteritemSpacing = 10  // 셀 간 간격 설정
-        layout.minimumLineSpacing = 10  // 줄 간 간격 설정
+        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
         
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
+    private lazy var addButton: UIButton = {
+        let addButton = UIButton()
+        let size = view.bounds.width * 0.10
+        let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: size, weight: .bold, scale: .large)
+        let symbolImage = UIImage(systemName: "plus.circle.fill", withConfiguration: symbolConfiguration)?.withTintColor(.systemGray4, renderingMode: .alwaysOriginal)
+        addButton.setImage(symbolImage, for: .normal)
+        addButton.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
+        return addButton
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +37,30 @@ final class MarkerImageCollectionViewController: UIViewController, UICollectionV
         configureUI()
     }
     
+    @objc func tapAddButton() {
+        let markerRegistrationViewController = MarkerRegistrationViewController()
+        present(markerRegistrationViewController, animated: true)
+    }
+    
     private func setupCollectionView() {
-        // 컬렉션 뷰 설정
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCell")  // 셀 등록
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCell")
     }
     
     private func configureUI() {
-        // 컬렉션 뷰 추가 및 레이아웃 설정
+        view.addSubview(addButton)
         view.addSubview(collectionView)
+        view.bringSubviewToFront(addButton)
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+        ])
+        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -45,28 +68,28 @@ final class MarkerImageCollectionViewController: UIViewController, UICollectionV
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
-    
-    // 컬렉션 뷰 데이터 소스 메서드 구현
+}
+
+extension MarkerImageCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return markerImages.count  // 배열의 항목 수 반환
+        return markerImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath)
         
-        // 셀에 이미지 추가
         let imageView = UIImageView(frame: cell.bounds)
         imageView.contentMode = .scaleAspectFit
         
         let markerImage = markerImages[indexPath.item]
         
         if let image = UIImage(data: markerImage.data) {
-            imageView.image = image  // 이미지 설정
+            imageView.image = image
         } else {
-            imageView.image = UIImage(systemName: "photo")  // 기본값 설정
+            imageView.image = UIImage(systemName: "photo")
         }
         
-        cell.contentView.addSubview(imageView)  // 셀에 이미지뷰 추가
+        cell.contentView.addSubview(imageView)
         
         return cell
     }
