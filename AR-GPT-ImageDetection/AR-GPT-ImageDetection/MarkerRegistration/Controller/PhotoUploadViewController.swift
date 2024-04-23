@@ -23,9 +23,11 @@ class PhotoUploadViewController: UIViewController, UIImagePickerControllerDelega
                 // 선택된 이미지 처리
             }
             picker.dismiss(animated: true)
+            self.dismiss(animated: true)
         }
 
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             picker.dismiss(animated: true)
+            self.dismiss(animated: true)
         }
 }
