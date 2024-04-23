@@ -38,7 +38,7 @@ final class MarkerImageCollectionViewController: UIViewController {
     }
     
     @objc func tapAddButton() {
-        let markerRegistrationViewController = MarkerRegistrationViewController()
+        let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager)
         present(markerRegistrationViewController, animated: true)
     }
     

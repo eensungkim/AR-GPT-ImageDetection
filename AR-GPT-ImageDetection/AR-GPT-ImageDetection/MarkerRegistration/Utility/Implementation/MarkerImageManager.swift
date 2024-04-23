@@ -7,7 +7,7 @@
 
 import CoreData
 
-final class MarkerImageManager {
+final class MarkerImageManager: MarkerImageManageable {
     private var container: NSPersistentContainer
     
     init(container: NSPersistentContainer) {
