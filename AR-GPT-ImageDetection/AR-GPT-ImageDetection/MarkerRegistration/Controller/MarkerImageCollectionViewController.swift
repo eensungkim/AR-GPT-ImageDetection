@@ -60,7 +60,7 @@ final class MarkerImageCollectionViewController: UIViewController, UICollectionV
         
         let markerImage = markerImages[indexPath.item]
         
-        if let imageData = markerImage.data, let image = UIImage(data: imageData) {
+        if let image = UIImage(data: markerImage.data) {
             imageView.image = image  // 이미지 설정
         } else {
             imageView.image = UIImage(systemName: "photo")  // 기본값 설정

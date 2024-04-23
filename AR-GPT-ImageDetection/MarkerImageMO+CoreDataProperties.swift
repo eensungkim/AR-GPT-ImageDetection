@@ -16,12 +16,11 @@ extension MarkerImageMO {
         return NSFetchRequest<MarkerImageMO>(entityName: "MarkerImage")
     }
 
-    @NSManaged public var id: UUID?
-    @NSManaged public var name: String?
-    @NSManaged public var type: String?
-    @NSManaged public var data: String?
-    @NSManaged public var information: String?
-    @NSManaged public var additionalInformation: String?
+    @NSManaged public var id: UUID
+    @NSManaged public var name: String
+    @NSManaged public var data: String
+    @NSManaged public var information: String
+    @NSManaged public var additionalInformation: String
 
 }
 

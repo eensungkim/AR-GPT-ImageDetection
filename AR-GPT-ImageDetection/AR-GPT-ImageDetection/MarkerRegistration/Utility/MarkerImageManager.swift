@@ -16,20 +16,8 @@ final class MarkerImageManager {
     
     func fetchMarkerImage() -> [MarkerImage] {
         do {
-            let markerImage = try self.container.viewContext.fetch(MarkerImageMO.fetchRequest()) as! [MarkerImageMO]
-            let result: [MarkerImage] = markerImage.compactMap { marker in
-                guard let id = marker.id,
-                      let name = marker.name else {
-                    return nil
-                }
-                return MarkerImage(
-                    id: id,
-                    name: name,
-                    base64Data: marker.data ?? "Unknown",
-                    description: marker.information ?? "",
-                    additionalInformation: marker.additionalInformation ?? ""
-                )
-            }
+            let markerImage = try self.container.viewContext.fetch(MarkerImageMO.fetchRequest())
+            let result: [MarkerImage] = markerImage.compactMap { $0.toDomain() }
             return result
         } catch {
             print(error.localizedDescription)
