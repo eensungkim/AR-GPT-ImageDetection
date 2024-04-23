@@ -11,18 +11,25 @@ final class MarkerRegistrationView: UIView {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.spacing = 20
         return stackView
     }()
     private let nameView = Inputview(text: "타이틀")
     private let descriptionView = Inputview(text: "이미지 정의")
     private let additionalInformationView = Inputview(text: "이미지 설명")
     
-    private let addButton = UIButton()
+    private let addButton: UIButton = {
+        let addButton = UIButton()
+        addButton.setTitle("등록", for: .normal)
+        addButton.setTitleColor(.black, for: .normal)
+        addButton.setImage(UIImage(systemName: "doc.fill.badge.plus"), for: .normal)
+        return addButton
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .systemPink
+        self.backgroundColor = .systemGray6
         configureUI()
     }
     
@@ -32,7 +39,6 @@ final class MarkerRegistrationView: UIView {
     
     private func configureUI() {
         stackView.addArrangedSubview(nameView)
-        stackView.addArrangedSubview(typeView)
         stackView.addArrangedSubview(descriptionView)
         stackView.addArrangedSubview(additionalInformationView)
         
@@ -43,21 +49,29 @@ final class MarkerRegistrationView: UIView {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            stackView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.85),
         ])
         
         NSLayoutConstraint.activate([
-            addButton.topAnchor.constraint(equalTo: stackView.bottomAnchor),
+            addButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
             addButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor)
         ])
+    }
+    
+    func addTarget(_ target: Any, method: Selector) {
+        addButton.addTarget(target, action: method, for: .touchUpInside)
     }
 }
 
 final class Inputview: UIStackView {
     let label = UILabel()
-    let textField = UITextField()
+    let textField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
     
     init(text: String) {
         label.text = text
@@ -77,5 +91,16 @@ final class Inputview: UIStackView {
         
         self.addArrangedSubview(label)
         self.addArrangedSubview(textField)
+        
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            label.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3)
+        ])
     }
 }
