@@ -8,16 +8,22 @@
 import UIKit
 
 struct ColoredSymbolProvider: ColoredSymbolProtocol {
-    private(set) var viewfinder: UIImage? = {
+    private(set) var viewfinder: UIImage?
+    
+    init() {
+        createViewFinder()
+    }
+    
+    mutating private func createViewFinder() {
         let image = UIImage(systemName: "viewfinder")
         let configuration = UIImage.SymbolConfiguration(pointSize: 1000, weight: .ultraLight, scale: .large)
         let largeSymbol = image?.withConfiguration(configuration).withTintColor(.yellow)
         
         guard let pngData = largeSymbol?.pngData(),
-           let pngImage = UIImage(data: pngData) else {
-            return nil
+              let pngImage = UIImage(data: pngData) else {
+            return
         }
         
-        return pngImage
-    }()
+        self.viewfinder = pngImage
+    }
 }
