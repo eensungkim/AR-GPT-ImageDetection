@@ -28,10 +28,13 @@ final class MarkerRegistrationView: UIView {
     private let additionalInformationView = InputView(text: "이미지 설명")
     
     private let addButton: UIButton = {
-        let addButton = UIButton()
+        let addButton = UIButton(type: .system)
         addButton.setTitle("등록", for: .normal)
-        addButton.setTitleColor(.black, for: .normal)
-        addButton.setImage(UIImage(systemName: "doc.fill.badge.plus"), for: .normal)
+        addButton.setTitleColor(.white, for: .normal)
+        addButton.titleLabel?.font = .preferredFont(forTextStyle: .title2)
+        addButton.backgroundColor = .systemGray2
+        addButton.layer.cornerRadius = 10
+        addButton.layer.masksToBounds = true
         return addButton
     }()
     
@@ -74,7 +77,8 @@ final class MarkerRegistrationView: UIView {
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
-            addButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor)
+            addButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            addButton.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.17)
         ])
     }
     
