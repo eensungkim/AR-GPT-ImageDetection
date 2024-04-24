@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 마커 이미지 구조체
 struct MarkerImage {
     let id: UUID
     let name: String

@@ -7,6 +7,7 @@
 
 import CoreData
 
+// MARK: - MarkerImage -> MarkerImageMO 변환
 extension MarkerImageMO {
     convenience init(markerImage: MarkerImage, context: NSManagedObjectContext) {
         self.init(context: context)
@@ -18,6 +19,7 @@ extension MarkerImageMO {
     }
 }
 
+// MARK: - MarkerImageMO -> MarkerImage 변환
 extension MarkerImageMO {
     func toDomain() -> MarkerImage? {
         guard let encodedData = Data(base64Encoded: data) else { return nil }

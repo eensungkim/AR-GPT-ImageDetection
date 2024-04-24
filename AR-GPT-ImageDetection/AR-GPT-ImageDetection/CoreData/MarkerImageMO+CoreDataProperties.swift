@@ -6,7 +6,6 @@
 //
 //
 
-import Foundation
 import CoreData
 
 
@@ -24,6 +23,4 @@ extension MarkerImageMO {
 
 }
 
-extension MarkerImageMO : Identifiable {
-
-}
+extension MarkerImageMO : Identifiable { }

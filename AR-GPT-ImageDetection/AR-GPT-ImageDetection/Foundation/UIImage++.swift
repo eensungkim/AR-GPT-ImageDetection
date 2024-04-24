@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - 이미지 사이즈 조절
 extension UIImage {
     func resizeImage(toWidth width: CGFloat) -> UIImage? {
         let originalSize = self.size

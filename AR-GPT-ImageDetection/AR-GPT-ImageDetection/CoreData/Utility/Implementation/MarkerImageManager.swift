@@ -7,6 +7,7 @@
 
 import CoreData
 
+/// 마커 이미지를 Core Data 와 연동해 저장하고 로드하는 매니저 클래스
 final class MarkerImageManager {
     static let shared = MarkerImageManager()
     
@@ -24,7 +25,9 @@ final class MarkerImageManager {
     private init() { }
 }
 
+// MARK: - MarkerImageManageable 프로토콜 구현부
 extension MarkerImageManager: MarkerImageManageable {
+    // Core Data 에 저장된 데이터를 불러와 [MarkerImage] 로 변환
     func fetch() -> [MarkerImage] {
         do {
             let markerImage = try persistentContainer.viewContext.fetch(MarkerImageMO.fetchRequest())
@@ -36,6 +39,7 @@ extension MarkerImageManager: MarkerImageManageable {
         }
     }
     
+    // Core Data에 마커 저장
     func save() {
         guard persistentContainer.viewContext.hasChanges else { return }
         
@@ -46,6 +50,7 @@ extension MarkerImageManager: MarkerImageManageable {
         }
     }
     
+    // 마커 삭제
     func delete(item: MarkerImageMO) {
         persistentContainer.viewContext.delete(item)
         save()
