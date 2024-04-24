@@ -7,12 +7,16 @@
 
 import UIKit
 
+/// 마커등록뷰컨트롤러
 final class MarkerRegistrationViewController: UIViewController {
     
+    // MARK: - Properties
     private let markerImageManager: MarkerImageManageable
-    private let markerRegistrationView = MarkerRegistrationView()
     weak var delegate: MarkerImageCollectionViewControllerDelegate?
-
+    
+    private let markerRegistrationView = MarkerRegistrationView()
+    
+    // MARK: - Life Cycle
     init(markerImageManager: MarkerImageManageable) {
         self.markerImageManager = markerImageManager
         super.init(nibName: nil, bundle: nil)
@@ -28,7 +32,10 @@ final class MarkerRegistrationViewController: UIViewController {
         setupMarkerRegistrationView()
         initializeHideKeyboard()
     }
-    
+}
+
+// MARK: - Configuration
+extension MarkerRegistrationViewController {
     private func setupMarkerRegistrationView() {
         view = markerRegistrationView
         markerRegistrationView.addTarget(self)
@@ -41,7 +48,10 @@ final class MarkerRegistrationViewController: UIViewController {
         )
         view.addGestureRecognizer(tap)
     }
-    
+}
+
+// MARK: - @objc Methods
+extension MarkerRegistrationViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -61,6 +71,7 @@ final class MarkerRegistrationViewController: UIViewController {
     }
 }
 
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension MarkerRegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private func presentImagePicker() {
         let imagePicker = UIImagePickerController()

@@ -16,6 +16,7 @@ final class MarkerImageManager {
         
         container.loadPersistentStores { _, error in
             if let error {
+                // TODO: 추후 에러 처리 필요, fatalError 대체
                 fatalError("Failed to load persistent stores: \(error.localizedDescription)")
             }
         }

@@ -9,12 +9,14 @@ import ARKit
 
 /// AGI 앱의 이미지 인식 탭을 담당하는 컨트롤러
 final class ImageDetectionViewController: UIViewController {
+    // MARK: - Properties
     private let imageDetectionView = ARSCNView()
     private let service = VisionAPIService()
     private let snapshotGenerator: SnapshotCreatable
     private let textImageGenerator: TextImageCreatable
     private let coloredSymbolProvider: ColoredSymbolProtocol
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureImageDetectionView()
@@ -69,6 +71,7 @@ extension ImageDetectionViewController: ARSessionDelegate {
     }
 }
 
+// MARK: - GPTInformationViewController 모달
 extension ImageDetectionViewController {
     private func presentInformation(node: SCNNode) {
         let gptInformationViewController = GPTInformationViewController()

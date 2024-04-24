@@ -7,7 +7,9 @@
 
 import UIKit
 
+/// 마커 등록 기능을 표현하는 뷰
 final class MarkerRegistrationView: UIView {
+    // MARK: - Properties
     private let imageViewButton: UIButton = {
         let imageViewButton = UIButton()
         let configuration = UIImage.SymbolConfiguration(pointSize: 1024, weight: .light, scale: .large)
@@ -38,6 +40,7 @@ final class MarkerRegistrationView: UIView {
         return addButton
     }()
     
+    // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -48,7 +51,39 @@ final class MarkerRegistrationView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+// MARK: - Public Methods
+extension MarkerRegistrationView {
+    func addTarget(_ target: Any) {
+        imageViewButton.addTarget(target, action: #selector(MarkerRegistrationViewController.togglePhotoLibrary), for: .touchUpInside)
+        addButton.addTarget(target, action: #selector(MarkerRegistrationViewController.saveMarkerImage), for: .touchUpInside)
+    }
     
+    func setImage(_ image: UIImage) {
+        imageViewButton.setImage(image, for: .normal)
+    }
+    
+    func getMarkerImage() -> MarkerImage? {
+        guard let name = nameView.textField.text,
+              let data = imageViewButton.currentImage?.resizeImage(toWidth: 512)?.pngData(),
+              let description = descriptionView.textField.text,
+              let additionalInformation = additionalInformationView.textField.text else {
+            return nil
+        }
+        
+        return MarkerImage(
+            id: UUID(),
+            name: name,
+            data: data,
+            description: description,
+            additionalInformation: additionalInformation
+        )
+    }
+}
+
+// MARK: - UI
+extension MarkerRegistrationView {
     private func configureUI() {
         stackView.addArrangedSubview(nameView)
         stackView.addArrangedSubview(descriptionView)
@@ -81,34 +116,9 @@ final class MarkerRegistrationView: UIView {
             addButton.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.17)
         ])
     }
-    
-    func addTarget(_ target: Any) {
-        imageViewButton.addTarget(target, action: #selector(MarkerRegistrationViewController.togglePhotoLibrary), for: .touchUpInside)
-        addButton.addTarget(target, action: #selector(MarkerRegistrationViewController.saveMarkerImage), for: .touchUpInside)
-    }
-    
-    func setImage(_ image: UIImage) {
-        imageViewButton.setImage(image, for: .normal)
-    }
-    
-    func getMarkerImage() -> MarkerImage? {
-        guard let name = nameView.textField.text,
-              let data = imageViewButton.currentImage?.resizeImage(toWidth: 512)?.pngData(),
-              let description = descriptionView.textField.text,
-              let additionalInformation = additionalInformationView.textField.text else {
-            return nil
-        }
-        
-        return MarkerImage(
-            id: UUID(),
-            name: name,
-            data: data,
-            description: description,
-            additionalInformation: additionalInformation
-        )
-    }
 }
 
+/// UILabel + UITextField 가 조합된 스택뷰
 final class InputView: UIStackView {
     let label = UILabel()
     let textField: UITextField = {

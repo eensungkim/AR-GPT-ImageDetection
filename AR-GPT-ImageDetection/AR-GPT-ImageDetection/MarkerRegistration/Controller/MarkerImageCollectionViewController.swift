@@ -11,7 +11,9 @@ protocol MarkerImageCollectionViewControllerDelegate: AnyObject {
     func reloadMarkerImages()
 }
 
+/// 등록된 마커이미지를 보여주는 뷰컨트롤러
 final class MarkerImageCollectionViewController: UIViewController {
+    // MARK: - Properties
     private let markerImageManager = MarkerImageManager.shared
     private lazy var markerImages: [MarkerImage] = markerImageManager.fetch()
     
@@ -30,26 +32,35 @@ final class MarkerImageCollectionViewController: UIViewController {
         return addButton
     }()
     
-    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
         configureUI()
     }
-    
-    @objc func tapAddButton() {
-        let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager)
-        markerRegistrationViewController.delegate = self
-        present(markerRegistrationViewController, animated: true)
-    }
-    
+}
+
+// MARK: - configuration
+extension MarkerImageCollectionViewController {
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCell")
     }
-    
+}
+
+// MARK: - @objc Method
+extension MarkerImageCollectionViewController {
+    @objc func tapAddButton() {
+        let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager)
+        markerRegistrationViewController.delegate = self
+        present(markerRegistrationViewController, animated: true)
+    }
+}
+
+// MARK: - UI
+extension MarkerImageCollectionViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(addButton)
@@ -73,6 +84,7 @@ final class MarkerImageCollectionViewController: UIViewController {
     }
 }
 
+// MARK: - MarkerImageCollectionViewControllerDelegate
 extension MarkerImageCollectionViewController: MarkerImageCollectionViewControllerDelegate {
     func reloadMarkerImages() {
         markerImages = markerImageManager.fetch()
@@ -80,6 +92,7 @@ extension MarkerImageCollectionViewController: MarkerImageCollectionViewControll
     }
 }
 
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 extension MarkerImageCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return markerImages.count
