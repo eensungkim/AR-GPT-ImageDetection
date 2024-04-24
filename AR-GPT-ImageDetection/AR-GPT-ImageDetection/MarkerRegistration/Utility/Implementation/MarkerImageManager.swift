@@ -8,7 +8,7 @@
 import CoreData
 
 final class MarkerImageManager: MarkerImageManageable {
-    private var container: NSPersistentContainer
+    var container: NSPersistentContainer
     
     init(container: NSPersistentContainer) {
         self.container = container
@@ -22,25 +22,6 @@ final class MarkerImageManager: MarkerImageManageable {
         } catch {
             print(error.localizedDescription)
             return []
-        }
-    }
-    
-    func saveMarkerImage(_ marker: MarkerImage) {
-        guard let entity = NSEntityDescription.entity(forEntityName: "MarkerImage", in: self.container.viewContext) else {
-            return
-        }
-        
-        let markerImage = NSManagedObject(entity: entity, insertInto: self.container.viewContext)
-        markerImage.setValue(marker.name, forKey: "name")
-        markerImage.setValue(marker.description, forKey: "information")
-        markerImage.setValue(marker.additionalInformation, forKey: "additionalInformation")
-        markerImage.setValue(marker.data, forKey: "data")
-        markerImage.setValue(marker.id, forKey: "id")
-        
-        do {
-            try self.container.viewContext.save()
-        } catch {
-            print(error.localizedDescription)
         }
     }
 }

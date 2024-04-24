@@ -5,9 +5,9 @@
 //  Created by Kim EenSung on 4/23/24.
 //
 
-import Foundation
+import CoreData
 
 protocol MarkerImageManageable {
+    var container: NSPersistentContainer { get }
     func fetchMarkerImage() -> [MarkerImage]
-    func saveMarkerImage(_ marker: MarkerImage)
 }
