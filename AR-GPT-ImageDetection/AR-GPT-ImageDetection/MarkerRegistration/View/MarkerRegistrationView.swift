@@ -11,7 +11,7 @@ final class MarkerRegistrationView: UIView {
     private let imageViewButton: UIButton = {
         let imageViewButton = UIButton()
         let configuration = UIImage.SymbolConfiguration(pointSize: 1024, weight: .light, scale: .large)
-        let skeletonImage = UIImage(systemName: "photo", withConfiguration: configuration)
+        let skeletonImage = UIImage(systemName: "photo.badge.plus", withConfiguration: configuration)
         imageViewButton.setImage(skeletonImage, for: .normal)
         imageViewButton.imageView?.contentMode = .scaleAspectFit
         return imageViewButton

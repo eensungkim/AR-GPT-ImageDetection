@@ -12,7 +12,6 @@
 		8A76D3FF2BD5EAEB000DFA8B /* TextImageCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D3FE2BD5EAEB000DFA8B /* TextImageCreatable.swift */; };
 		8A76D4032BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4022BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift */; };
 		8A76D4062BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4042BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld */; };
-		8A76D4082BD5F73F000DFA8B /* MarkerImageCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4072BD5F73F000DFA8B /* MarkerImageCoreData.swift */; };
 		8A76D40B2BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4092BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift */; };
 		8A76D40C2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D40A2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift */; };
 		8A76D40F2BD6228A000DFA8B /* MarkerImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D40E2BD6228A000DFA8B /* MarkerImageManager.swift */; };
@@ -48,7 +47,6 @@
 		8A76D3FE2BD5EAEB000DFA8B /* TextImageCreatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextImageCreatable.swift; sourceTree = "<group>"; };
 		8A76D4022BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSymbolProtocol.swift; sourceTree = "<group>"; };
 		8A76D4052BD5F031000DFA8B /* MarkerImageModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MarkerImageModel.xcdatamodel; sourceTree = "<group>"; };
-		8A76D4072BD5F73F000DFA8B /* MarkerImageCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerImageCoreData.swift; sourceTree = "<group>"; };
 		8A76D4092BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkerImageMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A76D40A2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkerImageMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A76D40E2BD6228A000DFA8B /* MarkerImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerImageManager.swift; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABB52BCE474300C64AF0 /* MarkerImage.swift */,
-				8A76D4072BD5F73F000DFA8B /* MarkerImageCoreData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -450,7 +447,6 @@
 				8A7FABC82BCE639400C64AF0 /* VisionRequestModel.swift in Sources */,
 				8A7FABB22BCE41BD00C64AF0 /* ImageDetectionViewController.swift in Sources */,
 				8A76D4142BD62EF9000DFA8B /* MarkerRegistrationView.swift in Sources */,
-				8A76D4082BD5F73F000DFA8B /* MarkerImageCoreData.swift in Sources */,
 				8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */,
 				8A7FABC52BCE612600C64AF0 /* APIConfig.swift in Sources */,
 				8A76D3FF2BD5EAEB000DFA8B /* TextImageCreatable.swift in Sources */,

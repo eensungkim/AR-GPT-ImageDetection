@@ -54,7 +54,8 @@ final class MarkerRegistrationViewController: UIViewController {
         guard let markerImage = markerRegistrationView.getMarkerImage() else {
             return
         }
-        _ = MarkerImageMO(markerImage: markerImage, context: markerImageManager.container.viewContext)
+        _ = MarkerImageMO(markerImage: markerImage, context: markerImageManager.persistentContainer.viewContext)
+        markerImageManager.save()
         delegate?.reloadMarkerImages()
         self.dismiss(animated: true)
     }

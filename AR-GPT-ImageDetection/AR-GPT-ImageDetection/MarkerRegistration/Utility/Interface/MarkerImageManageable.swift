@@ -8,6 +8,7 @@
 import CoreData
 
 protocol MarkerImageManageable {
-    var container: NSPersistentContainer { get }
-    func fetchMarkerImage() -> [MarkerImage]
+    var persistentContainer: NSPersistentContainer { get }
+    func fetch() -> [MarkerImage]
+    func save()
 }

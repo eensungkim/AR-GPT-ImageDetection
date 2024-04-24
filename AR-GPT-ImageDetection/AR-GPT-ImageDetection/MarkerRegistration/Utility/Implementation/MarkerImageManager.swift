@@ -7,21 +7,47 @@
 
 import CoreData
 
-final class MarkerImageManager: MarkerImageManageable {
-    var container: NSPersistentContainer
+final class MarkerImageManager {
+    static let shared = MarkerImageManager()
     
-    init(container: NSPersistentContainer) {
-        self.container = container
-    }
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "MarkerImageModel")
+        
+        container.loadPersistentStores { _, error in
+            if let error {
+                fatalError("Failed to load persistent stores: \(error.localizedDescription)")
+            }
+        }
+        return container
+    }()
     
-    func fetchMarkerImage() -> [MarkerImage] {
+    private init() { }
+}
+
+extension MarkerImageManager: MarkerImageManageable {
+    func fetch() -> [MarkerImage] {
         do {
-            let markerImage = try self.container.viewContext.fetch(MarkerImageMO.fetchRequest())
+            let markerImage = try persistentContainer.viewContext.fetch(MarkerImageMO.fetchRequest())
             let result: [MarkerImage] = markerImage.compactMap { $0.toDomain() }
             return result
         } catch {
             print(error.localizedDescription)
             return []
         }
+    }
+    
+    func save() {
+        guard persistentContainer.viewContext.hasChanges else { return }
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            print("Failed to save the context:", error.localizedDescription)
+        }
+    }
+    
+    func delete(item: MarkerImageMO) {
+        persistentContainer.viewContext.delete(item)
+        save()
     }
 }
