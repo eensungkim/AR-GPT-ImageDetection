@@ -25,7 +25,11 @@ final class MarkerRegistrationView: UIView {
         stackView.spacing = 20
         return stackView
     }()
-    private let nameView = InputView(text: "타이틀")
+    private let nameView: InputView = {
+        let nameView = InputView(text: "타이틀")
+        nameView.textField.placeholder = "두 글자 이상 입력해 주세요."
+        return nameView
+    }()
     private let descriptionView = InputView(text: "이미지 정의")
     private let additionalInformationView = InputView(text: "이미지 설명")
     
@@ -37,6 +41,7 @@ final class MarkerRegistrationView: UIView {
         addButton.backgroundColor = .systemGray2
         addButton.layer.cornerRadius = 10
         addButton.layer.masksToBounds = true
+        addButton.isEnabled = false
         return addButton
     }()
     
@@ -55,6 +60,22 @@ final class MarkerRegistrationView: UIView {
 
 // MARK: - Public Methods
 extension MarkerRegistrationView {
+    func setDelegate(_ delegate: UITextFieldDelegate) {
+        nameView.textField.delegate = delegate
+    }
+    
+    func toggleAddButton() {
+        guard
+            let isNameValid = nameView.textField.text?.isEmpty,
+            let isImageValid = imageViewButton.currentImage?.isSymbolImage
+        else {
+            addButton.isEnabled = false
+            return
+        }
+        
+        addButton.isEnabled = !isNameValid && !isImageValid
+    }
+    
     func addTarget(_ target: Any) {
         imageViewButton.addTarget(target, action: #selector(MarkerRegistrationViewController.togglePhotoLibrary), for: .touchUpInside)
         addButton.addTarget(target, action: #selector(MarkerRegistrationViewController.saveMarkerImage), for: .touchUpInside)

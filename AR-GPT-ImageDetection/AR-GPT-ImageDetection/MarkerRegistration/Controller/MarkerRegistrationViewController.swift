@@ -31,6 +31,7 @@ final class MarkerRegistrationViewController: UIViewController {
         
         setupMarkerRegistrationView()
         initializeHideKeyboard()
+        setTextFieldDelegate()
     }
 }
 
@@ -40,7 +41,7 @@ extension MarkerRegistrationViewController {
         view = markerRegistrationView
         markerRegistrationView.addTarget(self)
     }
-    
+        
     private func initializeHideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
@@ -68,6 +69,18 @@ extension MarkerRegistrationViewController {
         markerImageManager.save()
         delegate?.reloadMarkerImages()
         self.dismiss(animated: true)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension MarkerRegistrationViewController: UITextFieldDelegate {
+    private func setTextFieldDelegate() {
+        markerRegistrationView.setDelegate(self)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        markerRegistrationView.toggleAddButton()
+        return true
     }
 }
 
