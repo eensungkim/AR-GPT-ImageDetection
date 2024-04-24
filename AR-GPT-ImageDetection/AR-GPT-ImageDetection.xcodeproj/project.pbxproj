@@ -20,6 +20,7 @@
 		8A76D4162BD65519000DFA8B /* MarkerImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4152BD65519000DFA8B /* MarkerImageCollectionViewController.swift */; };
 		8A76D41A2BD79795000DFA8B /* MarkerImageMO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4192BD79795000DFA8B /* MarkerImageMO+Mapping.swift */; };
 		8A76D4212BD7E23E000DFA8B /* MarkerImageManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4202BD7E23E000DFA8B /* MarkerImageManageable.swift */; };
+		8A76D4242BD89F78000DFA8B /* UIImage++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A76D4232BD89F78000DFA8B /* UIImage++.swift */; };
 		8A7FAB912BCE371400C64AF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */; };
 		8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */; };
 		8A7FAB9A2BCE371500C64AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A7FAB992BCE371500C64AF0 /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		8A76D4152BD65519000DFA8B /* MarkerImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerImageCollectionViewController.swift; sourceTree = "<group>"; };
 		8A76D4192BD79795000DFA8B /* MarkerImageMO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarkerImageMO+Mapping.swift"; sourceTree = "<group>"; };
 		8A76D4202BD7E23E000DFA8B /* MarkerImageManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerImageManageable.swift; sourceTree = "<group>"; };
+		8A76D4232BD89F78000DFA8B /* UIImage++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage++.swift"; sourceTree = "<group>"; };
 		8A7FAB8D2BCE371400C64AF0 /* AR-GPT-ImageDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-GPT-ImageDetection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,9 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				8A76D4042BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld */,
-				8A76D4192BD79795000DFA8B /* MarkerImageMO+Mapping.swift */,
 				8A76D4092BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift */,
 				8A76D40A2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift */,
+				8A76D4192BD79795000DFA8B /* MarkerImageMO+Mapping.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -152,6 +154,14 @@
 				8A76D40E2BD6228A000DFA8B /* MarkerImageManager.swift */,
 			);
 			path = Implementation;
+			sourceTree = "<group>";
+		};
+		8A76D4222BD89F69000DFA8B /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				8A76D4232BD89F78000DFA8B /* UIImage++.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		8A7FAB842BCE371400C64AF0 = {
@@ -174,6 +184,7 @@
 		8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				8A76D4222BD89F69000DFA8B /* Foundation */,
 				8A7FABA72BCE3DE100C64AF0 /* App */,
 				8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */,
 				8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */,
@@ -453,6 +464,7 @@
 				8A76D4062BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld in Sources */,
 				8A76D41A2BD79795000DFA8B /* MarkerImageMO+Mapping.swift in Sources */,
 				8A76D40F2BD6228A000DFA8B /* MarkerImageManager.swift in Sources */,
+				8A76D4242BD89F78000DFA8B /* UIImage++.swift in Sources */,
 				8A7FABAF2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift in Sources */,
 				8A7FAB932BCE371400C64AF0 /* SceneDelegate.swift in Sources */,
 			);
