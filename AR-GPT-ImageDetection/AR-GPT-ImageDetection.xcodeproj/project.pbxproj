@@ -113,6 +113,7 @@
 		8A76D40D2BD61FB8000DFA8B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABB42BCE473200C64AF0 /* Model */,
 				8A76D41D2BD7E200000DFA8B /* Interface */,
 				8A76D41E2BD7E208000DFA8B /* Implementation */,
 			);
@@ -130,6 +131,7 @@
 		8A76D41C2BD799CC000DFA8B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				8A76D40D2BD61FB8000DFA8B /* Utility */,
 				8A76D4042BD5F031000DFA8B /* MarkerImageModel.xcdatamodeld */,
 				8A76D4092BD5F956000DFA8B /* MarkerImageMO+CoreDataClass.swift */,
 				8A76D40A2BD5F956000DFA8B /* MarkerImageMO+CoreDataProperties.swift */,
@@ -165,7 +167,6 @@
 		8A7FAB842BCE371400C64AF0 = {
 			isa = PBXGroup;
 			children = (
-				8A76D41C2BD799CC000DFA8B /* CoreData */,
 				8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */,
 				8A7FAB8E2BCE371400C64AF0 /* Products */,
 			);
@@ -182,11 +183,11 @@
 		8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				8A76D41C2BD799CC000DFA8B /* CoreData */,
 				8A76D4222BD89F69000DFA8B /* Foundation */,
 				8A7FABA72BCE3DE100C64AF0 /* App */,
 				8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */,
 				8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */,
-				8A7FABA62BCE3DB900C64AF0 /* GPTInformation */,
 				8A7FABB72BCE51D100C64AF0 /* Network */,
 				8A7FABC02BCE5E5B00C64AF0 /* Resources */,
 				8A7FABC12BCE5E6900C64AF0 /* Supports */,
@@ -197,8 +198,6 @@
 		8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */ = {
 			isa = PBXGroup;
 			children = (
-				8A76D40D2BD61FB8000DFA8B /* Utility */,
-				8A7FABB42BCE473200C64AF0 /* Model */,
 				8A76D4122BD62ED8000DFA8B /* View */,
 				8A7FABAC2BCE416E00C64AF0 /* Controller */,
 			);
@@ -213,14 +212,6 @@
 				8A7FABAD2BCE417A00C64AF0 /* Controller */,
 			);
 			path = ImageDetection;
-			sourceTree = "<group>";
-		};
-		8A7FABA62BCE3DB900C64AF0 /* GPTInformation */ = {
-			isa = PBXGroup;
-			children = (
-				8A7FABD92BD0D22A00C64AF0 /* Controller */,
-			);
-			path = GPTInformation;
 			sourceTree = "<group>";
 		};
 		8A7FABA72BCE3DE100C64AF0 /* App */ = {
@@ -246,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABB12BCE41BD00C64AF0 /* ImageDetectionViewController.swift */,
+				8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,14 +336,6 @@
 				8A7FABD52BCF6EF900C64AF0 /* VisionAPIService.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		8A7FABD92BD0D22A00C64AF0 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		8A7FABE02BD103AA00C64AF0 /* Utility */ = {
