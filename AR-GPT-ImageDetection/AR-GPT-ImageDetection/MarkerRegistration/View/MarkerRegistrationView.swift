@@ -89,7 +89,7 @@ final class MarkerRegistrationView: UIView {
     
     func getMarkerImage() -> MarkerImage? {
         guard let name = nameView.textField.text,
-              let data = imageViewButton.currentImage?.resizeImage(toWidth: 1024)?.pngData(),
+              let data = imageViewButton.currentImage?.resizeImage(toWidth: 512)?.pngData(),
               let description = descriptionView.textField.text,
               let additionalInformation = additionalInformationView.textField.text else {
             return nil

@@ -17,10 +17,7 @@ final class MarkerImageCollectionViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
-        
+        layout.itemSize = CGSize(width: 110, height: 110)        
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     private lazy var addButton: UIButton = {
@@ -54,6 +51,7 @@ final class MarkerImageCollectionViewController: UIViewController {
     }
     
     private func configureUI() {
+        view.backgroundColor = .systemBackground
         view.addSubview(addButton)
         view.addSubview(collectionView)
         view.bringSubviewToFront(addButton)
@@ -69,8 +67,8 @@ final class MarkerImageCollectionViewController: UIViewController {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
         ])
     }
 }
