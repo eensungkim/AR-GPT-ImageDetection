@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MarkerImageCollectionViewControllerDelegate: AnyObject {
+    func reloadMarkerImages()
+}
+
 final class MarkerImageCollectionViewController: UIViewController {
     private let markerImageManager = MarkerImageManager(container: MarkerImageCoreData.shared.persistentContainer)
     private lazy var markerImages: [MarkerImage] = markerImageManager.fetchMarkerImage()
@@ -39,6 +43,7 @@ final class MarkerImageCollectionViewController: UIViewController {
     
     @objc func tapAddButton() {
         let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager)
+        markerRegistrationViewController.delegate = self
         present(markerRegistrationViewController, animated: true)
     }
     
@@ -70,6 +75,13 @@ final class MarkerImageCollectionViewController: UIViewController {
     }
 }
 
+extension MarkerImageCollectionViewController: MarkerImageCollectionViewControllerDelegate {
+    func reloadMarkerImages() {
+        markerImages = markerImageManager.fetchMarkerImage()
+        collectionView.reloadData()
+    }
+}
+
 extension MarkerImageCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return markerImages.count
@@ -77,6 +89,10 @@ extension MarkerImageCollectionViewController: UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath)
+        
+        for subview in cell.contentView.subviews {
+            subview.removeFromSuperview()
+        }
         
         let imageView = UIImageView(frame: cell.bounds)
         imageView.contentMode = .scaleAspectFit

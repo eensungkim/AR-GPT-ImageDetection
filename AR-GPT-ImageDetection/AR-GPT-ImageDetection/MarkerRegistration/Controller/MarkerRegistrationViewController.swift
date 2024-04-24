@@ -11,6 +11,7 @@ final class MarkerRegistrationViewController: UIViewController {
     
     private let markerImageManager: MarkerImageManageable
     private let markerRegistrationView = MarkerRegistrationView()
+    weak var delegate: MarkerImageCollectionViewControllerDelegate?
 
     init(markerImageManager: MarkerImageManageable) {
         self.markerImageManager = markerImageManager
@@ -30,7 +31,7 @@ final class MarkerRegistrationViewController: UIViewController {
     
     private func setupMarkerRegistrationView() {
         view = markerRegistrationView
-        markerRegistrationView.addTarget(self, method: #selector(togglePhotoLibrary))
+        markerRegistrationView.addTarget(self)
     }
     
     private func initializeHideKeyboard() {
@@ -45,8 +46,17 @@ final class MarkerRegistrationViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc private func togglePhotoLibrary() {
+    @objc func togglePhotoLibrary() {
         presentImagePicker()
+    }
+    
+    @objc func saveMarkerImage() {
+        guard let markerImage = markerRegistrationView.getMarkerImage() else {
+            return
+        }
+        _ = MarkerImageMO(markerImage: markerImage, context: markerImageManager.container.viewContext)
+        delegate?.reloadMarkerImages()
+        self.dismiss(animated: true)
     }
 }
 
@@ -60,7 +70,7 @@ extension MarkerRegistrationViewController: UIImagePickerControllerDelegate, UIN
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
-            // 선택된 이미지 처리
+            markerRegistrationView.setImage(selectedImage)
         }
         picker.dismiss(animated: true)
     }

@@ -8,15 +8,24 @@
 import UIKit
 
 final class MarkerRegistrationView: UIView {
+    private let imageViewButton: UIButton = {
+        let imageViewButton = UIButton()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 1024, weight: .light, scale: .large)
+        let skeletonImage = UIImage(systemName: "photo", withConfiguration: configuration)
+        imageViewButton.setImage(skeletonImage, for: .normal)
+        imageViewButton.imageView?.contentMode = .scaleAspectFit
+        return imageViewButton
+    }()
+
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 20
         return stackView
     }()
-    private let nameView = Inputview(text: "타이틀")
-    private let descriptionView = Inputview(text: "이미지 정의")
-    private let additionalInformationView = Inputview(text: "이미지 설명")
+    private let nameView = InputView(text: "타이틀")
+    private let descriptionView = InputView(text: "이미지 정의")
+    private let additionalInformationView = InputView(text: "이미지 설명")
     
     private let addButton: UIButton = {
         let addButton = UIButton()
@@ -42,14 +51,23 @@ final class MarkerRegistrationView: UIView {
         stackView.addArrangedSubview(descriptionView)
         stackView.addArrangedSubview(additionalInformationView)
         
+        self.addSubview(imageViewButton)
         self.addSubview(stackView)
         self.addSubview(addButton)
         
+        imageViewButton.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            imageViewButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            imageViewButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
+            imageViewButton.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor),
+            imageViewButton.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.618)
+        ])
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: imageViewButton.bottomAnchor, constant: 20),
             stackView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             stackView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.85),
         ])
@@ -60,12 +78,34 @@ final class MarkerRegistrationView: UIView {
         ])
     }
     
-    func addTarget(_ target: Any, method: Selector) {
-        addButton.addTarget(target, action: method, for: .touchUpInside)
+    func addTarget(_ target: Any) {
+        imageViewButton.addTarget(target, action: #selector(MarkerRegistrationViewController.togglePhotoLibrary), for: .touchUpInside)
+        addButton.addTarget(target, action: #selector(MarkerRegistrationViewController.saveMarkerImage), for: .touchUpInside)
+    }
+    
+    func setImage(_ image: UIImage) {
+        imageViewButton.setImage(image, for: .normal)
+    }
+    
+    func getMarkerImage() -> MarkerImage? {
+        guard let name = nameView.textField.text,
+              let data = imageViewButton.currentImage?.resizeImage(toWidth: 1024)?.pngData(),
+              let description = descriptionView.textField.text,
+              let additionalInformation = additionalInformationView.textField.text else {
+            return nil
+        }
+        
+        return MarkerImage(
+            id: UUID(),
+            name: name,
+            data: data,
+            description: description,
+            additionalInformation: additionalInformation
+        )
     }
 }
 
-final class Inputview: UIStackView {
+final class InputView: UIStackView {
     let label = UILabel()
     let textField: UITextField = {
         let textField = UITextField()
