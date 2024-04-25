@@ -76,8 +76,10 @@ extension MarkerImageManager: MarkerImageManageable {
     }
     
     // 마커 삭제
-    func delete(item: MarkerImageMO) {
-        persistentContainer.viewContext.delete(item)
+    func delete(by id: UUID) {
+        if let item = fetch(by: id) {
+            persistentContainer.viewContext.delete(item)            
+        }
         save()
     }
 }

@@ -38,6 +38,7 @@ final class MarkerImageCollectionViewController: UIViewController {
         
         setupCollectionView()
         configureUI()
+        addGesture()
     }
 }
 
@@ -48,6 +49,11 @@ extension MarkerImageCollectionViewController {
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCell")
     }
+    
+    private func addGesture() {
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        collectionView.addGestureRecognizer(longPressRecognizer)
+    }
 }
 
 // MARK: - private Method
@@ -56,6 +62,17 @@ extension MarkerImageCollectionViewController {
         viewController.delegate = self
         present(viewController, animated: true)
     }
+    
+    private func showDeleteConfirmation(for indexPath: IndexPath) {
+        let alert = UIAlertController(title: "마커 삭제", message: "마커를 삭제하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
+            guard let id = self?.markerImages[indexPath.item].id else { return }
+            self?.markerImageManager.delete(by: id)
+            self?.reloadMarkerImages()
+        }))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - @objc Method
@@ -63,6 +80,15 @@ extension MarkerImageCollectionViewController {
     @objc func tapAddButton() {
         let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager)
         presentMarkerRegistrationViewController(markerRegistrationViewController)
+    }
+    
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            let point = gesture.location(in: collectionView)
+            if let indexPath = collectionView.indexPathForItem(at: point) {
+                showDeleteConfirmation(for: indexPath)
+            }
+        }
     }
 }
 

@@ -13,5 +13,5 @@ protocol MarkerImageManageable {
     func fetchAll() -> [MarkerImage]
     func update(with markerImage: MarkerImage)
     func save()
-    func delete(item: MarkerImageMO)
+    func delete(by id: UUID)
 }
