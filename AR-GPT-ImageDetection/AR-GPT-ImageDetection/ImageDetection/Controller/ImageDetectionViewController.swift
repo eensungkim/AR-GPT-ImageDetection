@@ -131,7 +131,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
               let metaData = MarkerProvider.markerImageSet[name] else { return SCNNode() }
         let text = """
             이미지명: \(metaData.name)
-            정의: \(metaData.description)
+            정의: \(metaData.information)
             설명: \(metaData.additionalInformation)
             """
         let textImage = textImageGenerator.textToImage(drawText: text, inImage: CGSize(width: 1024, height: 512))

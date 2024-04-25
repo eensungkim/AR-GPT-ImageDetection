@@ -13,7 +13,7 @@ extension MarkerImageMO {
         self.init(context: context)
         self.id = markerImage.id
         self.name = markerImage.name
-        self.information = markerImage.description
+        self.information = markerImage.information
         self.additionalInformation = markerImage.additionalInformation
         self.data = markerImage.data.base64EncodedString()
     }
@@ -24,6 +24,6 @@ extension MarkerImageMO {
     func toDomain() -> MarkerImage? {
         guard let encodedData = Data(base64Encoded: data) else { return nil }
         
-        return .init(id: id, name: name, data: encodedData, description: information, additionalInformation: additionalInformation)
+        return .init(id: id, name: name, data: encodedData, information: information, additionalInformation: additionalInformation)
     }
 }

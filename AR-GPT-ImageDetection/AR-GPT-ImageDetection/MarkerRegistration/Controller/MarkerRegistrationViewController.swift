@@ -143,7 +143,7 @@ extension MarkerRegistrationViewController {
         guard let image = UIImage(data: markerImage.data) else { return }
         imageViewButton.setImage(image, for: .normal)
         nameView.textField.text = markerImage.name
-        descriptionView.textField.text = markerImage.description
+        descriptionView.textField.text = markerImage.information
         additionalInformationView.textField.text = markerImage.additionalInformation
     }
 }
@@ -174,7 +174,7 @@ extension MarkerRegistrationViewController {
                 id: UUID(),
                 name: name,
                 data: imageData,
-                description: information,
+                information: information,
                 additionalInformation: additionalInformation
             )
             _ = MarkerImageMO(markerImage: markerImage, context: markerImageManager.persistentContainer.viewContext)
