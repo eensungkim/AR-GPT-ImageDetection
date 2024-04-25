@@ -35,13 +35,7 @@ final class SnapshotGenerator: SnapshotCreatable {
     
     private func cropImage(to rect: CGRect, from originalImage: UIImage) -> UIImage? {
         guard let cgImage = originalImage.cgImage else { return nil }
-        let contextImage = UIImage(cgImage: cgImage)
-        let newCropRect = CGRect(x: rect.minX,
-                                 y: rect.minY,
-                                 width: rect.width,
-                                 height: rect.height)
-
-        guard let croppedCgImage = contextImage.cgImage?.cropping(to: newCropRect) else { return nil }
+        guard let croppedCgImage = cgImage.cropping(to: rect) else { return nil }
         let croppedImage = UIImage(cgImage: croppedCgImage)
         
         return croppedImage
