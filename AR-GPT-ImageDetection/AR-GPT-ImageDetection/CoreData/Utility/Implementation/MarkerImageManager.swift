@@ -29,7 +29,7 @@ final class MarkerImageManager {
 // MARK: - MarkerImageManageable 프로토콜 구현부
 extension MarkerImageManager: MarkerImageManageable {
     // Core Data 에 저장된 데이터를 불러와 [MarkerImage] 로 변환
-    func fetch() -> [MarkerImage] {
+    func fetchAll() -> [MarkerImage] {
         do {
             let markerImage = try persistentContainer.viewContext.fetch(MarkerImageMO.fetchRequest())
             let result: [MarkerImage] = markerImage.compactMap { $0.toDomain() }

@@ -15,7 +15,7 @@ protocol MarkerImageCollectionViewControllerDelegate: AnyObject {
 final class MarkerImageCollectionViewController: UIViewController {
     // MARK: - Properties
     private let markerImageManager = MarkerImageManager.shared
-    private lazy var markerImages: [MarkerImage] = markerImageManager.fetch()
+    private lazy var markerImages: [MarkerImage] = markerImageManager.fetchAll()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -94,7 +94,7 @@ extension MarkerImageCollectionViewController {
 // MARK: - MarkerImageCollectionViewControllerDelegate
 extension MarkerImageCollectionViewController: MarkerImageCollectionViewControllerDelegate {
     func reloadMarkerImages() {
-        markerImages = markerImageManager.fetch()
+        markerImages = markerImageManager.fetchAll()
         collectionView.reloadData()
     }
 }

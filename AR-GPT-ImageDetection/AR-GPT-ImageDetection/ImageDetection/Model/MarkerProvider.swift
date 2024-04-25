@@ -12,7 +12,7 @@ struct MarkerProvider {
     
     static func loadMarkerImages() -> Set<ARReferenceImage> {
         let manager = MarkerImageManager.shared
-        let referenceImages: Set<ARReferenceImage> = Set(manager.fetch().compactMap { markerImage in
+        let referenceImages: Set<ARReferenceImage> = Set(manager.fetchAll().compactMap { markerImage in
             markerImageSet[markerImage.name] = markerImage
             guard let image = UIImage(data: markerImage.data)?.cgImage else {
                 return nil
