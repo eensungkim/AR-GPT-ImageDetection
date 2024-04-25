@@ -50,12 +50,19 @@ extension MarkerImageCollectionViewController {
     }
 }
 
+// MARK: - private Method
+extension MarkerImageCollectionViewController {
+    private func presentMarkerRegistrationViewController(_ viewController: MarkerRegistrationViewController) {
+        viewController.delegate = self
+        present(viewController, animated: true)
+    }
+}
+
 // MARK: - @objc Method
 extension MarkerImageCollectionViewController {
     @objc func tapAddButton() {
-        let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager)
-        markerRegistrationViewController.delegate = self
-        present(markerRegistrationViewController, animated: true)
+        let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager, isUpdating: false)
+        presentMarkerRegistrationViewController(markerRegistrationViewController)
     }
 }
 
