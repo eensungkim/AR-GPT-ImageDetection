@@ -28,6 +28,20 @@ final class MarkerImageManager {
 
 // MARK: - MarkerImageManageable 프로토콜 구현부
 extension MarkerImageManager: MarkerImageManageable {
+    // Core Data 에 저장된 마커MO 가져오기
+    func fetch(by id: UUID) -> MarkerImageMO? {
+        let fetchRequest: NSFetchRequest<MarkerImageMO> = MarkerImageMO.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+            
+            do {
+                let results = try persistentContainer.viewContext.fetch(fetchRequest)
+                return results.first
+            } catch {
+                print("Failed to fetch MarkerImage:", error.localizedDescription)
+                return nil
+            }
+    }
+    
     // Core Data 에 저장된 데이터를 불러와 [MarkerImage] 로 변환
     func fetchAll() -> [MarkerImage] {
         do {
@@ -37,6 +51,16 @@ extension MarkerImageManager: MarkerImageManageable {
         } catch {
             print(error.localizedDescription)
             return []
+        }
+    }
+    
+    // 마커 업데이트
+    func update(with markerImage: MarkerImage) {
+        if let item = fetch(by: markerImage.id) {
+            item.name = markerImage.name
+            item.data = markerImage.data.base64EncodedString()
+            item.information = markerImage.information
+            item.additionalInformation = markerImage.additionalInformation
         }
     }
     

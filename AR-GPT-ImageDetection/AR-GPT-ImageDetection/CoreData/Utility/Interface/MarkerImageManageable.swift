@@ -9,6 +9,9 @@ import CoreData
 
 protocol MarkerImageManageable {
     var persistentContainer: NSPersistentContainer { get }
-    func fetch() -> [MarkerImage]
+    func fetch(by id: UUID) -> MarkerImageMO?
+    func fetchAll() -> [MarkerImage]
+    func update(with markerImage: MarkerImage)
     func save()
+    func delete(item: MarkerImageMO)
 }

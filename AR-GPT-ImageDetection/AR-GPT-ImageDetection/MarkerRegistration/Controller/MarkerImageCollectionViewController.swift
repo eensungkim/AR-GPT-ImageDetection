@@ -61,7 +61,7 @@ extension MarkerImageCollectionViewController {
 // MARK: - @objc Method
 extension MarkerImageCollectionViewController {
     @objc func tapAddButton() {
-        let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager, isUpdating: false)
+        let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager)
         presentMarkerRegistrationViewController(markerRegistrationViewController)
     }
 }
@@ -126,5 +126,12 @@ extension MarkerImageCollectionViewController: UICollectionViewDataSource, UICol
         cell.contentView.addSubview(imageView)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let markerImage = markerImages[indexPath.item]
+        let markerRegistrationViewController = MarkerRegistrationViewController(markerImageManager: markerImageManager, markerImage: markerImage)
+        markerRegistrationViewController.setFields(markerImage)
+        presentMarkerRegistrationViewController(markerRegistrationViewController)
     }
 }

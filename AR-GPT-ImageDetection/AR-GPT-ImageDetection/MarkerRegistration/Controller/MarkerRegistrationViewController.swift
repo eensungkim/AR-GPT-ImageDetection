@@ -13,7 +13,7 @@ final class MarkerRegistrationViewController: UIViewController {
     // MARK: - Properties
     private let markerImageManager: MarkerImageManageable
     weak var delegate: MarkerImageCollectionViewControllerDelegate?
-    private var isUpdating: Bool = false
+    private var markerImage: MarkerImage?
     
     private let imageViewButton: UIButton = {
         let imageViewButton = UIButton()
@@ -51,9 +51,9 @@ final class MarkerRegistrationViewController: UIViewController {
     }()
     
     // MARK: - Life Cycle
-    init(markerImageManager: MarkerImageManageable, isUpdating: Bool) {
+    init(markerImageManager: MarkerImageManageable, markerImage: MarkerImage? = nil) {
         self.markerImageManager = markerImageManager
-        self.isUpdating = isUpdating
+        self.markerImage = markerImage
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -167,8 +167,15 @@ extension MarkerRegistrationViewController {
             let additionalInformation = additionalInformationView.textField.text
         else { return }
         
-        if isUpdating {
-//            markerImageManager.update(with: markerImage)
+        if markerImage != nil {
+            markerImage?.update(
+                name: name,
+                data: imageData,
+                information: information,
+                additionalInformation: additionalInformation
+            )
+            guard let marker = markerImage else { return }
+            markerImageManager.update(with: marker)
         } else {
             let markerImage = MarkerImage(
                 id: UUID(),
