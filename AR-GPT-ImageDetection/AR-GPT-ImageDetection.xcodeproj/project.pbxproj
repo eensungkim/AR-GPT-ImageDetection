@@ -93,9 +93,9 @@
 		8A76D3F92BD5E9DC000DFA8B /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				8A76D4022BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift */,
 				8A76D3FB2BD5EA3C000DFA8B /* SnapshotCreatable.swift */,
 				8A76D3FE2BD5EAEB000DFA8B /* TextImageCreatable.swift */,
-				8A76D4022BD5EC0D000DFA8B /* ColoredSymbolProtocol.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -103,9 +103,9 @@
 		8A76D3FA2BD5E9E5000DFA8B /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				8A76D3F72BD25DC1000DFA8B /* ColoredSymbolProvider.swift */,
 				8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */,
 				8A7FABE12BD1043A00C64AF0 /* TextImageGenerator.swift */,
-				8A76D3F72BD25DC1000DFA8B /* ColoredSymbolProvider.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -113,9 +113,9 @@
 		8A76D40D2BD61FB8000DFA8B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABB42BCE473200C64AF0 /* Model */,
 				8A76D41D2BD7E200000DFA8B /* Interface */,
 				8A76D41E2BD7E208000DFA8B /* Implementation */,
+				8A7FABB42BCE473200C64AF0 /* Model */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -183,11 +183,11 @@
 		8A7FAB8F2BCE371400C64AF0 /* AR-GPT-ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABA72BCE3DE100C64AF0 /* App */,
 				8A76D41C2BD799CC000DFA8B /* CoreData */,
 				8A76D4222BD89F69000DFA8B /* Foundation */,
-				8A7FABA72BCE3DE100C64AF0 /* App */,
-				8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */,
 				8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */,
+				8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */,
 				8A7FABB72BCE51D100C64AF0 /* Network */,
 				8A7FABC02BCE5E5B00C64AF0 /* Resources */,
 				8A7FABC12BCE5E6900C64AF0 /* Supports */,
@@ -198,8 +198,8 @@
 		8A7FABA42BCE3D8500C64AF0 /* MarkerRegistration */ = {
 			isa = PBXGroup;
 			children = (
-				8A76D4122BD62ED8000DFA8B /* View */,
 				8A7FABAC2BCE416E00C64AF0 /* Controller */,
+				8A76D4122BD62ED8000DFA8B /* View */,
 			);
 			path = MarkerRegistration;
 			sourceTree = "<group>";
@@ -207,9 +207,9 @@
 		8A7FABA52BCE3D8F00C64AF0 /* ImageDetection */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABE02BD103AA00C64AF0 /* Utility */,
-				8A7FABCB2BCE6A2B00C64AF0 /* Model */,
 				8A7FABAD2BCE417A00C64AF0 /* Controller */,
+				8A7FABCB2BCE6A2B00C64AF0 /* Model */,
+				8A7FABE02BD103AA00C64AF0 /* Utility */,
 			);
 			path = ImageDetection;
 			sourceTree = "<group>";
@@ -217,9 +217,9 @@
 		8A7FABA72BCE3DE100C64AF0 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */,
 				8A7FAB902BCE371400C64AF0 /* AppDelegate.swift */,
 				8A7FAB922BCE371400C64AF0 /* SceneDelegate.swift */,
-				8A7FABA82BCE3F2300C64AF0 /* AGITabBarController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -227,8 +227,8 @@
 		8A7FABAC2BCE416E00C64AF0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABAE2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift */,
 				8A76D4152BD65519000DFA8B /* MarkerImageCollectionViewController.swift */,
+				8A7FABAE2BCE41A200C64AF0 /* MarkerRegistrationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -236,8 +236,8 @@
 		8A7FABAD2BCE417A00C64AF0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABB12BCE41BD00C64AF0 /* ImageDetectionViewController.swift */,
 				8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */,
+				8A7FABB12BCE41BD00C64AF0 /* ImageDetectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -253,12 +253,12 @@
 		8A7FABB72BCE51D100C64AF0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				8A7FABC32BCE611C00C64AF0 /* Utility */,
-				8A7FABD32BCF6ECC00C64AF0 /* Foundation */,
-				8A7FABD42BCF6ED500C64AF0 /* Service */,
 				8A7FABBB2BCE58E600C64AF0 /* API */,
-				8A7FABC62BCE637200C64AF0 /* Model */,
 				8A7FABD02BCF667200C64AF0 /* Error */,
+				8A7FABD32BCF6ECC00C64AF0 /* Foundation */,
+				8A7FABC62BCE637200C64AF0 /* Model */,
+				8A7FABD42BCF6ED500C64AF0 /* Service */,
+				8A7FABC32BCE611C00C64AF0 /* Utility */,
 			);
 			path = Network;
 			sourceTree = "<group>";
