@@ -11,10 +11,12 @@ import ARKit
 final class ImageDetectionViewController: UIViewController {
     // MARK: - Properties
     private let imageDetectionView = ARSCNView()
+    private let gptInformationViewController = GPTInformationViewController()
     private let service = VisionAPIService()
     private let snapshotGenerator: SnapshotCreatable
     private let textImageGenerator: TextImageCreatable
     private let coloredSymbolProvider: ColoredSymbolProtocol
+    private var cacheData: [SCNNode: String] = [:]
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -74,24 +76,32 @@ extension ImageDetectionViewController: ARSessionDelegate {
 // MARK: - GPTInformationViewController 모달
 extension ImageDetectionViewController {
     private func presentInformation(node: SCNNode) {
-        let gptInformationViewController = GPTInformationViewController()
+        gptInformationViewController.resetInformation()
         gptInformationViewController.setupModalBehavior(delegate: self)
         present(gptInformationViewController, animated: true)
-        
-        let snapshot = imageDetectionView.snapshot()
-        guard let snapshotData = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node),
-              let name = node.name,
-              let image = UIImage(named: name),
-              let referenceImageData = image.pngData() else {
-            return
+        if let responseCache = cacheData[node] {
+            gptInformationViewController.setText(responseCache)
+        } else {
+            requestGPTInformation(with: node)
         }
+    }
+    
+    private func requestGPTInformation(with node: SCNNode) {
+        let snapshot = imageDetectionView.snapshot()
+        guard
+            let snapshotData = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node),
+            let id = node.name,
+            let marker = MarkerProvider.getMetaData(by: id)
+        else { return }
+        let referenceImage = marker.data
         
         Task {
             let result = try await service.requestInformation(with: [
-                referenceImageData.base64EncodedString(),
+                referenceImage.base64EncodedString(),
                 snapshotData.base64EncodedString()
             ])
             let content = result.choices[0].message.content
+            cacheData[node] = content
             gptInformationViewController.setText(content)
         }
     }
