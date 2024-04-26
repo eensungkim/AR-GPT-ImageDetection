@@ -61,4 +61,9 @@ extension GPTInformationViewController {
         loadingIndicatorView.stopAnimating()
         textView.text = text
     }
+    
+    func resetInformation() {
+        loadingIndicatorView.startAnimating()
+        textView.text = nil
+    }
 }
