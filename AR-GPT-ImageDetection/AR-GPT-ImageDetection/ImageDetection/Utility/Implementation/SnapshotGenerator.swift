@@ -18,9 +18,7 @@ final class SnapshotGenerator: SnapshotCreatable {
     
     private func calculateFrame(in view: ARSCNView, of node: SCNNode) -> CGRect {
         let scale = UIScreen.main.scale
-        let (min, max) = node.boundingBox
-        let minVec = SCNVector3(min.x, min.y, min.z)
-        let maxVec = SCNVector3(max.x, max.y, max.z)
+        let (minVec, maxVec) = node.boundingBox
         
         let minScreenPoint = view.projectPoint(node.convertPosition(minVec, to: nil))
         let maxScreenPoint = view.projectPoint(node.convertPosition(maxVec, to: nil))
