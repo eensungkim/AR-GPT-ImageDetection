@@ -19,7 +19,6 @@ final class MarkerImageCollectionViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 110, height: 110)        
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     private lazy var addButton: UIButton = {
@@ -40,6 +39,12 @@ final class MarkerImageCollectionViewController: UIViewController {
         configureUI()
         addGesture()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        configureLayout()
+    }
 }
 
 // MARK: - configuration
@@ -53,6 +58,20 @@ extension MarkerImageCollectionViewController {
     private func addGesture() {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         collectionView.addGestureRecognizer(longPressRecognizer)
+    }
+    
+    private func configureLayout() {
+        let screenWidth = view.safeAreaLayoutGuide.layoutFrame.width
+        let numberOfItemsPerRow = 3
+        let spacing: CGFloat = 2
+        let totalSpacing = (CGFloat(numberOfItemsPerRow - 1) * spacing)
+        let width = (screenWidth - totalSpacing) / CGFloat(numberOfItemsPerRow)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: width, height: width)
+        layout.minimumInteritemSpacing = spacing
+        layout.minimumLineSpacing = spacing
+        collectionView.collectionViewLayout = layout
     }
 }
 
@@ -111,8 +130,8 @@ extension MarkerImageCollectionViewController {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
 }
@@ -139,7 +158,7 @@ extension MarkerImageCollectionViewController: UICollectionViewDataSource, UICol
         }
         
         let imageView = UIImageView(frame: cell.bounds)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         
         let markerImage = markerImages[indexPath.item]
         
