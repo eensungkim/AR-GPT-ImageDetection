@@ -39,6 +39,7 @@
 		8A7FABD82BCFA61300C64AF0 /* SnapshotGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */; };
 		8A7FABDB2BD0D26800C64AF0 /* GPTInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */; };
 		8A7FABE22BD1043A00C64AF0 /* TextImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7FABE12BD1043A00C64AF0 /* TextImageGenerator.swift */; };
+		8AFDE3DD2BDB95D4005CB673 /* SnapshotError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE3DC2BDB95D4005CB673 /* SnapshotError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		8A7FABD72BCFA61300C64AF0 /* SnapshotGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotGenerator.swift; sourceTree = "<group>"; };
 		8A7FABDA2BD0D26800C64AF0 /* GPTInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTInformationViewController.swift; sourceTree = "<group>"; };
 		8A7FABE12BD1043A00C64AF0 /* TextImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextImageGenerator.swift; sourceTree = "<group>"; };
+		8AFDE3DC2BDB95D4005CB673 /* SnapshotError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				8A7FABAD2BCE417A00C64AF0 /* Controller */,
+				8AFDE3DB2BDB95AF005CB673 /* Error */,
 				8A7FABCB2BCE6A2B00C64AF0 /* Model */,
 				8A7FABE02BD103AA00C64AF0 /* Utility */,
 			);
@@ -347,6 +350,14 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		8AFDE3DB2BDB95AF005CB673 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				8AFDE3DC2BDB95D4005CB673 /* SnapshotError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -432,6 +443,7 @@
 				8A7FABB22BCE41BD00C64AF0 /* ImageDetectionViewController.swift in Sources */,
 				8A76D4142BD62EF9000DFA8B /* InputFieldView.swift in Sources */,
 				8A7FABCD2BCF611800C64AF0 /* VisionResponseModel.swift in Sources */,
+				8AFDE3DD2BDB95D4005CB673 /* SnapshotError.swift in Sources */,
 				8A7FABC52BCE612600C64AF0 /* APIConfig.swift in Sources */,
 				8A76D3FF2BD5EAEB000DFA8B /* TextImageCreatable.swift in Sources */,
 				8A7FABB62BCE474300C64AF0 /* MarkerImage.swift in Sources */,

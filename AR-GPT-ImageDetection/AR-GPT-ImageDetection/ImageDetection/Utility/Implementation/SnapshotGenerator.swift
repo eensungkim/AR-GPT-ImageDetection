@@ -10,8 +10,12 @@ import ARKit
 final class SnapshotGenerator: SnapshotCreatable {
     func generateSnapshotData(_ image: UIImage, in view: ARSCNView, of node: SCNNode) -> Data? {
         let nodeFrame = calculateFrame(in: view, of: node)
-        if let croppedImage = cropImage(to: nodeFrame, from: image) {
-            return croppedImage.pngData()
+        do {
+            if let croppedImage = try cropImage(to: nodeFrame, from: image) {
+                return croppedImage.pngData()
+            }
+        } catch {
+            print(error.localizedDescription)
         }
         return nil
     }
@@ -31,9 +35,13 @@ final class SnapshotGenerator: SnapshotCreatable {
         return CGRect(x: x, y: y, width: width, height: height)
     }
     
-    private func cropImage(to rect: CGRect, from originalImage: UIImage) -> UIImage? {
-        guard let cgImage = originalImage.cgImage else { return nil }
-        guard let croppedCgImage = cgImage.cropping(to: rect) else { return nil }
+    private func cropImage(to rect: CGRect, from originalImage: UIImage) throws -> UIImage? {
+        guard let cgImage = originalImage.cgImage else {
+            throw SnapshotError.cgImageConversionFailure
+        }
+        guard let croppedCgImage = cgImage.cropping(to: rect) else {
+            throw SnapshotError.cropFailure
+        }
         let croppedImage = UIImage(cgImage: croppedCgImage)
         
         return croppedImage
