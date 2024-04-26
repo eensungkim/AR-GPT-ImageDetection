@@ -46,7 +46,6 @@ final class MarkerRegistrationViewController: UIViewController {
         addButton.backgroundColor = .systemGray2
         addButton.layer.cornerRadius = 10
         addButton.layer.masksToBounds = true
-        addButton.isEnabled = false
         return addButton
     }()
     
@@ -68,6 +67,7 @@ final class MarkerRegistrationViewController: UIViewController {
         setupMarkerRegistrationView()
         initializeHideKeyboard()
         setTextFieldDelegate()
+        toggleAddButton()
     }
 }
 
