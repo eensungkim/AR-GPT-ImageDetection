@@ -140,11 +140,17 @@ extension MarkerRegistrationViewController {
     }
     
     func setFields(_ markerImage: MarkerImage) {
-        guard let image = UIImage(data: markerImage.data) else { return }
-        imageViewButton.setImage(image, for: .normal)
-        nameView.textField.text = markerImage.name
-        descriptionView.textField.text = markerImage.information
-        additionalInformationView.textField.text = markerImage.additionalInformation
+        do {
+            guard let image = UIImage(data: markerImage.data) else {
+                throw ImageError.conversionFailure
+            }
+            imageViewButton.setImage(image, for: .normal)
+            nameView.textField.text = markerImage.name
+            descriptionView.textField.text = markerImage.information
+            additionalInformationView.textField.text = markerImage.additionalInformation
+        } catch {
+            makeAlert(message: error.localizedDescription, confirmAction: nil)
+        }
     }
 }
 

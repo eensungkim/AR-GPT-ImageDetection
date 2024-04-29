@@ -8,5 +8,5 @@
 import ARKit
 
 protocol SnapshotCreatable {
-    func generateSnapshotData(_ image: UIImage, in view: ARSCNView, of node: SCNNode) -> Data?
+    func generateSnapshotData(_ image: UIImage, in view: ARSCNView, of node: SCNNode) throws -> Data?
 }

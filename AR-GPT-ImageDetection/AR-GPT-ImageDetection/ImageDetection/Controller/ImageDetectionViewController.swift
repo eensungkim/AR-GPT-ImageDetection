@@ -87,23 +87,47 @@ extension ImageDetectionViewController {
     }
     
     private func requestGPTInformation(with node: SCNNode) {
-        let snapshot = imageDetectionView.snapshot()
-        guard
-            let snapshotData = snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node),
-            let id = node.name,
-            let marker = MarkerProvider.getMetaData(by: id)
-        else { return }
-        let referenceImage = marker.data
+        var snapshotData: Data? = nil
+        var referenceData: Data? = nil
         
+        do {
+            let snapshot = imageDetectionView.snapshot()
+            snapshotData = try snapshotGenerator.generateSnapshotData(snapshot, in: imageDetectionView, of: node)
+            guard
+                let id = node.name,
+                let marker = MarkerProvider.getMetaData(by: id)
+            else {
+                return
+            }
+            referenceData = marker.data
+        } catch {
+            makeAlert(message: error.localizedDescription, confirmAction: nil)
+        }
+        
+        guard
+            let validSnapshotData = snapshotData,
+            let validReferenceData = referenceData
+        else {
+            return
+        }
+            
         Task {
-            let result = try await service.requestInformation(with: [
-                referenceImage.base64EncodedString(),
-                snapshotData.base64EncodedString()
-            ])
-            let content = result.choices[0].message.content
-            cacheData[node] = content
-            DispatchQueue.main.async { [weak self] in
-                self?.gptInformationViewController.setText(content)
+            do {
+                let result = try await service.requestInformation(with: [
+                    validReferenceData.base64EncodedString(),
+                    validSnapshotData.base64EncodedString()
+                ])
+                let content = result.choices[0].message.content
+                cacheData[node] = content
+                DispatchQueue.main.async { [weak self] in
+                    self?.gptInformationViewController.setText(content)
+                }
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    self?.presentedViewController?.dismiss(animated: true) {
+                        self?.makeAlert(message: error.localizedDescription, confirmAction: nil)
+                    }
+                }
             }
         }
     }

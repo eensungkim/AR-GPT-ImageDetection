@@ -8,16 +8,10 @@
 import ARKit
 
 final class SnapshotGenerator: SnapshotCreatable {
-    func generateSnapshotData(_ image: UIImage, in view: ARSCNView, of node: SCNNode) -> Data? {
+    func generateSnapshotData(_ image: UIImage, in view: ARSCNView, of node: SCNNode) throws -> Data? {
         let nodeFrame = calculateFrame(in: view, of: node)
-        do {
-            if let croppedImage = try cropImage(to: nodeFrame, from: image) {
-                return croppedImage.pngData()
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-        return nil
+        let croppedImage = try cropImage(to: nodeFrame, from: image)
+        return croppedImage?.pngData()
     }
     
     private func calculateFrame(in view: ARSCNView, of node: SCNNode) -> CGRect {
