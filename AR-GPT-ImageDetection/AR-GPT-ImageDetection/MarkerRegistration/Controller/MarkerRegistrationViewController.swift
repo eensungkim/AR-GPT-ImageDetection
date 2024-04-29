@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MarkerRegistrationViewControllerDelegate: AnyObject {
+    func setImage(_ image: UIImage)
+}
+
 /// 마커등록뷰컨트롤러
 final class MarkerRegistrationViewController: UIViewController {
     
@@ -15,13 +19,36 @@ final class MarkerRegistrationViewController: UIViewController {
     weak var delegate: MarkerImageCollectionViewControllerDelegate?
     private var markerImage: MarkerImage?
     
-    private let imageViewButton: UIButton = {
-        let imageViewButton = UIButton()
+    let markerImageView: UIImageView = {
         let configuration = UIImage.SymbolConfiguration(pointSize: 1024, weight: .light, scale: .large)
-        let skeletonImage = UIImage(systemName: "photo.badge.plus", withConfiguration: configuration)
-        imageViewButton.setImage(skeletonImage, for: .normal)
-        imageViewButton.imageView?.contentMode = .scaleAspectFit
-        return imageViewButton
+        let skeletonImage = UIImage(systemName: "photo", withConfiguration: configuration)
+        let imageView = UIImageView(image: skeletonImage)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private let buttonStackView: UIStackView = {
+        let buttonStackView = UIStackView()
+        buttonStackView.axis = .horizontal
+        buttonStackView.spacing = 20
+        buttonStackView.distribution = .fillEqually
+        return buttonStackView
+    }()
+    
+    private let photoLibraryButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "사진 등록"
+        let photoLibraryButton = UIButton(configuration: configuration)
+        photoLibraryButton.addTarget(target, action: #selector(presentPhotoLibrary), for: .touchUpInside)
+        return photoLibraryButton
+    }()
+    
+    private let cameraButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "직접 촬영"
+        let cameraButton = UIButton(configuration: configuration)
+        cameraButton.addTarget(target, action: #selector(presentCamera), for: .touchUpInside)
+        return cameraButton
     }()
 
     private let stackView: UIStackView = {
@@ -39,13 +66,12 @@ final class MarkerRegistrationViewController: UIViewController {
     private let additionalInformationView = InputFieldView(text: "이미지 설명")
     
     private let addButton: UIButton = {
-        let addButton = UIButton(type: .system)
-        addButton.setTitle("등록", for: .normal)
-        addButton.setTitleColor(.white, for: .normal)
-        addButton.titleLabel?.font = .preferredFont(forTextStyle: .title2)
-        addButton.backgroundColor = .systemGray2
-        addButton.layer.cornerRadius = 10
-        addButton.layer.masksToBounds = true
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "등록"
+        configuration.baseForegroundColor = .systemGray2
+        configuration.buttonSize = .large
+        let addButton = UIButton(configuration: configuration)
+        addButton.addTarget(target, action: #selector(saveMarkerImage), for: .touchUpInside)
         return addButton
     }()
     
@@ -64,7 +90,6 @@ final class MarkerRegistrationViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        setupMarkerRegistrationView()
         initializeHideKeyboard()
         setTextFieldDelegate()
         toggleAddButton()
@@ -73,11 +98,6 @@ final class MarkerRegistrationViewController: UIViewController {
 
 // MARK: - Configuration
 extension MarkerRegistrationViewController {
-    private func setupMarkerRegistrationView() {
-        imageViewButton.addTarget(target, action: #selector(togglePhotoLibrary), for: .touchUpInside)
-        addButton.addTarget(target, action: #selector(saveMarkerImage), for: .touchUpInside)
-    }
-        
     private func initializeHideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
@@ -92,27 +112,37 @@ extension MarkerRegistrationViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         
+        buttonStackView.addArrangedSubview(photoLibraryButton)
+        buttonStackView.addArrangedSubview(cameraButton)
+        
         stackView.addArrangedSubview(nameView)
         stackView.addArrangedSubview(descriptionView)
         stackView.addArrangedSubview(additionalInformationView)
         
-        view.addSubview(imageViewButton)
+        view.addSubview(markerImageView)
+        view.addSubview(buttonStackView)
         view.addSubview(stackView)
         view.addSubview(addButton)
         
-        imageViewButton.translatesAutoresizingMaskIntoConstraints = false
+        markerImageView.translatesAutoresizingMaskIntoConstraints = false
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            imageViewButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            imageViewButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            imageViewButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            imageViewButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.618)
+            markerImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            markerImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            markerImageView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            markerImageView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.618)
         ])
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: imageViewButton.bottomAnchor, constant: 20),
+            buttonStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            buttonStackView.topAnchor.constraint(equalTo: markerImageView.bottomAnchor, constant: 20)
+        ])
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor, constant: 20),
             stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             stackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.85),
         ])
@@ -130,7 +160,7 @@ extension MarkerRegistrationViewController {
     private func toggleAddButton() {
         guard
             let isNameValid = nameView.textField.text?.isEmpty,
-            let isImageValid = imageViewButton.currentImage?.isSymbolImage
+            let isImageValid = markerImageView.image?.isSymbolImage
         else {
             addButton.isEnabled = false
             return
@@ -144,7 +174,7 @@ extension MarkerRegistrationViewController {
             guard let image = UIImage(data: markerImage.data) else {
                 throw ImageError.conversionFailure
             }
-            imageViewButton.setImage(image, for: .normal)
+            markerImageView.image = image
             nameView.textField.text = markerImage.name
             descriptionView.textField.text = markerImage.information
             additionalInformationView.textField.text = markerImage.additionalInformation
@@ -160,14 +190,18 @@ extension MarkerRegistrationViewController {
         view.endEditing(true)
     }
     
-    @objc func togglePhotoLibrary() {
-        presentImagePicker()
+    @objc func presentPhotoLibrary() {
+        presentPickerViewController()
+    }
+    
+    @objc func presentCamera() {
+        presentCameraView()
     }
     
     @objc func saveMarkerImage() {
         guard 
             let name = nameView.textField.text,
-            let image = imageViewButton.currentImage,
+            let image = markerImageView.image,
             let imageData = image.pngData(),
             let information = descriptionView.textField.text,
             let additionalInformation = additionalInformationView.textField.text
@@ -198,6 +232,13 @@ extension MarkerRegistrationViewController {
     }
 }
 
+// MARK: - MarkerRegistrationViewControllerDelegate
+extension MarkerRegistrationViewController: MarkerRegistrationViewControllerDelegate {
+    func setImage(_ image: UIImage) {
+        markerImageView.image = image
+    }
+}
+
 // MARK: - UITextFieldDelegate
 extension MarkerRegistrationViewController: UITextFieldDelegate {
     private func setTextFieldDelegate() {
@@ -207,26 +248,5 @@ extension MarkerRegistrationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         toggleAddButton()
         return true
-    }
-}
-
-// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-extension MarkerRegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    private func presentImagePicker() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            imageViewButton.setImage(selectedImage, for: .normal)
-        }
-        picker.dismiss(animated: true)
-    }
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true)
     }
 }
