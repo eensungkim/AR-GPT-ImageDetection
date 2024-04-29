@@ -102,7 +102,9 @@ extension ImageDetectionViewController {
             ])
             let content = result.choices[0].message.content
             cacheData[node] = content
-            gptInformationViewController.setText(content)
+            DispatchQueue.main.async { [weak self] in
+                self?.gptInformationViewController.setText(content)
+            }
         }
     }
 }
