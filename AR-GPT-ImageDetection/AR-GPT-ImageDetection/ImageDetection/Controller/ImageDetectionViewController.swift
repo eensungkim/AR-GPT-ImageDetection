@@ -142,7 +142,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
     func renderer(_ renderer: any SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let imageAnchor = anchor as? ARImageAnchor {
             let overlayNode = createOverlayNode(for: imageAnchor.referenceImage)
-            let descriptionNode = createDescriptionNode(for: imageAnchor.referenceImage)
+            let descriptionNode = createInformationNode(for: imageAnchor.referenceImage)
             node.addChildNode(overlayNode)
             node.addChildNode(descriptionNode)
         }
@@ -163,7 +163,7 @@ extension ImageDetectionViewController: ARSCNViewDelegate {
         return overlayNode
     }
     
-    private func createDescriptionNode(for referenceImage: ARReferenceImage) -> SCNNode {
+    private func createInformationNode(for referenceImage: ARReferenceImage) -> SCNNode {
         let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
         plane.firstMaterial?.isDoubleSided = true
         
