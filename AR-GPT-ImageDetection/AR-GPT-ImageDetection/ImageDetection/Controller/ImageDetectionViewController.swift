@@ -29,6 +29,10 @@ final class ImageDetectionViewController: UIViewController {
         view = imageDetectionView
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        configureImageDetectionView()
+    }
+    
     init(
         snapshotGenerator: SnapshotCreatable,
         textImageGenerator: TextImageCreatable,
