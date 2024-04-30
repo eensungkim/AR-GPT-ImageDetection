@@ -2,6 +2,9 @@
 
 AR 을 활용하여 이미지를 인식하고, openAI Vision API 를 활용해 인식한 이미지에 대한 정보를 출력하는 앱입니다.
 
+### 기술 스택
+**ARKit, AVFoundation, CoreData, PhotosUI, UIKit**
+
 <br/>
 
 ## 1. 테스트 방법
@@ -205,3 +208,7 @@ let realCropWidth = maskLayerFrame.size.height * scale
 let realCropHeight = maskLayerFrame.size.width * scale
 let realCropRect = CGRect(x: realCropX, y: realCropY, width: realCropWidth, height: realCropHeight)
 ```
+
+SCNPlane 에 심볼 이미지 적용 시 색상 변경이 적용되지 않는 문제
+- 기본 카메라 어플에서 QR코드를 인식할 때 노란색 테두리가 뜨는 기능을 구현하고자 했으나, 심볼 이미지의 색상이 변경되지 않는 문제가 있었습니다.
+- 심볼 이미지를 생성하고 노란색으로 바꾼 뒤, 심볼이미지 -> pngData -> UIImage 로 변환하는 과정을 거쳐 문제를 해결했습니다.
