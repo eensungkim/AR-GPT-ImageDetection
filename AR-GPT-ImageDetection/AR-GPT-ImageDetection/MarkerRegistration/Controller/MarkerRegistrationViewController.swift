@@ -228,7 +228,7 @@ extension MarkerRegistrationViewController {
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
             addButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            addButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.17)
+            addButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.23)
         ])
     }
 }
