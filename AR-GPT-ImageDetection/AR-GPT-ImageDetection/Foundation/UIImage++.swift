@@ -23,4 +23,23 @@ extension UIImage {
         
         return resizedImage
     }
+    
+    func rotateImage90Degrees(image: UIImage) -> UIImage? {
+        guard let cgImage = image.cgImage else { return nil }
+        let size = CGSize(width: cgImage.height, height: cgImage.width)
+        UIGraphicsBeginImageContextWithOptions(size, false, image.scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        
+        // 좌표계 변환
+        context.translateBy(x: size.width / 2, y: size.height / 2)
+        context.rotate(by: .pi) // 90도 회전
+        context.scaleBy(x: 1.0, y: -1.0)
+
+        // 회전된 이미지 그리기
+        context.draw(cgImage, in: CGRect(x: -image.size.height / 2, y: -image.size.width / 2, width: image.size.height, height: image.size.width))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage
+    }
 }
