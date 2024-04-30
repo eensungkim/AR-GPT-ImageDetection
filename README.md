@@ -1,4 +1,4 @@
-# AR-GPT-ImageDetection
+![IMG_1625](https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/42d350b9-549c-4ac1-b6fb-fe89655a07b5)# AR-GPT-ImageDetection
 
 AR 을 활용하여 이미지를 인식하고, openAI Vision API 를 활용해 인식한 이미지에 대한 정보를 출력하는 앱입니다.
 
@@ -25,7 +25,7 @@ openAI API 를 활용하기 위해서는 AR-GPT-ImageDetection/Supports/ 폴더 
 
 |이미지 등록|이미지 인식|이미지 정보 출력|
 |---|---|---|
-|<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/3acffed4-732e-45fd-ae71-c267aada317e" width="300"/>|<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/57677370-a844-433d-be63-0fec877f0f68" width="300"/>|<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/9aaa051a-63aa-48b4-a60b-d13d608f1ad8" width="300"/>|
+|<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/7e21863b-80a4-4800-bc76-55cdccc19225" width="300"/>|<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/57677370-a844-433d-be63-0fec877f0f68" width="300"/>|<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/2b80b65f-2870-4941-8aa2-12cd7a1f96d7" width="300"/>|
 
 <br/>
 
@@ -36,15 +36,19 @@ openAI API 를 활용하기 위해서는 AR-GPT-ImageDetection/Supports/ 폴더 
 
 (초기 구동 시 등록된 이미지가 없으므로 아래 이미지와 달리 빈 화면이 노출됩니다.)
 
-<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/c59a8abc-2072-4e39-8d82-6e309fbf5038" width="300"/><img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/486f2b8e-c74d-47a9-bfc0-d024f85834cc" width="300"/>
+<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/c59a8abc-2072-4e39-8d82-6e309fbf5038" width="300"/><img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/4bed4d97-234d-46f5-aa3a-604f8ed5f042" width="300"/>
 
 <br/>
 
-이미지 버튼을 클릭해 기본 사진앱의 사진 중에서 등록할 이미지를 선택할 수 있습니다.
+사진 등록 버튼을 클릭해 기본 사진앱의 사진 중에서 등록할 이미지를 선택할 수 있습니다.
 
-사진을 등록하고 기타 정보를 입력하여 마커 이미지를 등록합니다.
+직접 촬영 버튼을 클릭해 카메라로 대상이 될 마커를 직접 촬영하여 등록할 수 있습니다.
 
-<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/279e0b1d-05f5-4b11-a11e-7d28a94e4dfe" width="300"/><img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/c235ec54-6d5d-4891-b6e5-7f88fb6f536b" width="300"/><img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/d2248cb0-b415-4211-8391-90bcd49e352d" width="300"/>
+<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/46c9fe9c-ec9e-4b2f-b2f5-fd7f0d7bca5b" width="300"/><img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/4653941e-0987-4c99-a8aa-4c23bb22de6f" width="300"/>
+
+기타 정보를 입력하여 마커 이미지를 등록합니다.
+
+<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/fc25842d-da56-43af-971e-db8007883b48" width="300"/>
 
 <br/>
 
@@ -64,9 +68,9 @@ openAI API 를 활용하기 위해서는 AR-GPT-ImageDetection/Supports/ 폴더 
 
 ### 이미지 인식
 
-등록한 마커 이미지를 기반으로 사물을 인식합니다. 인식하고자 하는 사물은 2차원 평면이어야 합니다.
+등록한 마커 이미지를 기반으로 사물을 인식합니다. 인식하고자 하는 사물은 2차원 평면에 위치해야 합니다.
 
-<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/e38746b9-bb06-4eff-8f11-40e57cbd81cf" width="300"/>
+<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/57677370-a844-433d-be63-0fec877f0f68" width="300"/>
 
 <br/>
 
@@ -74,7 +78,7 @@ openAI API 를 활용하기 위해서는 AR-GPT-ImageDetection/Supports/ 폴더 
 
 인식한 사물을 화면에서 터치하면 모달 창을 통해 해당 이미지에 대한 AI의 답변을 확인할 수 있습니다. (답변까지 통상 10초 이상 소요)
 
-<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/321c2260-8f3b-49b4-88f8-0dea4fbb441c" width="300"/>
+<img src="https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/2b80b65f-2870-4941-8aa2-12cd7a1f96d7" width="300"/>
 
 <br/>
 
@@ -100,11 +104,15 @@ openAI API 를 활용하기 위해서는 AR-GPT-ImageDetection/Supports/ 폴더 
 │       └── Model
 │           └── MarkerImage.swift  // 앱 내부에서 활용할 마커이미지 도메인
 ├── Foundation
-│   └── UIImage++.swift  // 이미지 리사이징 로직
+│   ├── UIImage++.swift  // 이미지 리사이징 로직
+│   └── UIViewController++.swift  // 알럿 컨트롤러
 ├── ImageDetection  // 이미지 인식 탭 관련 기능
 │   ├── Controller
 │   │   ├── GPTInformationViewController.swift  // Vision API 응답 관련 모달 뷰컨트롤러
 │   │   └── ImageDetectionViewController.swift  // 이미지 인식 뷰컨트롤러
+│   ├── Error
+│   │   ├── ImageError.swift
+│   │   └── SnapshotError.swift
 │   ├── Model
 │   │   └── MarkerProvider.swift  // ARReferenceImage 로드 기능 제공
 │   └── Utility
@@ -118,9 +126,11 @@ openAI API 를 활용하기 위해서는 AR-GPT-ImageDetection/Supports/ 폴더 
 │           └── TextImageCreatable.swift
 ├── MarkerRegistration
 │   ├── Controller
+│   │   ├── MarkerImageCaptureViewController.swift  // 카메라 뷰컨트롤러(마커이미지 촬영 기능)
 │   │   ├── MarkerImageCollectionViewController.swift  // 이미지 등록 탭 뷰컨트롤러(마커이미지 콜렉션 뷰)
 │   │   └── MarkerRegistrationViewController.swift  // 이미지 등록 모달 뷰컨트롤러(마커이미지 등록 기능)
 │   └── View
+│       ├── CameraPreviewView.swift
 │       └── InputFieldView.swift
 ├── Network
 │   ├── API
@@ -154,4 +164,44 @@ openAI API 를 활용하기 위해서는 AR-GPT-ImageDetection/Supports/ 폴더 
 
 ## 5. 해결한 문제
 
-- 
+이미지 크롭 시 발생했던 문제
+- 배율 문제
+    - UIView 의 frame: CGFloat 값과 실제 이미지의 사이즈: CGFloat 값은 서로 다른 단위를 가지고 있습니다.
+    - 따라서 UIView 와 관련된 frame 의 값을 가져와서 이미지를 가공하려면 배율을 계산하여 수치들을 조정해 주어야 합니다.
+    - 아래 코드에서처럼 카메라뷰의 너비를 가져온 뒤에 이미지의 실제 너비에서 나누어 주는 것으로 배율을 구하여 문제를 해결했습니다.
+
+```swift
+// MarkerImageCaptureViewController.swift 파일
+
+let imageWidth = CGFloat(cgImage.height)  // 이미지의 실제 크기
+let imageHeight = CGFloat(cgImage.width)
+        
+let cameraPreviewViewWidth = cameraPreviewView.bounds.width  // 특정한 UIView 의 크기
+let scale = imageWidth / cameraPreviewViewWidth  // 이미지 실제 크기에서 UIView 의 크기를 나누어 배율을 구함
+```
+
+- 좌표계 문제
+    - 위의 코드를 살펴보면 imageWidth 라는 변수에 cgImage 의 높이를 할당해 주었습니다.
+    - 이는 cgImage 로 변환하면서 좌표계가 달라지기 때문입니다. 카메라 촬영 시를 기준으로 너비가 cgImage 의 높이가 되고, 높이는 cgImage 의 너비로 변환되는 식입니다. 촬영한 이미지가 반시계방향으로 회전했다고 볼 수 있습니다.
+      - 이때 좌표계의 시작점과 방향도 달라집니다. UIView 의 좌표계가 좌상단(0,0)에서 출발해서 우하단(x,y) 방향으로 값이 늘어나게 된다면, cgImage 의 좌표계는 좌하단(0,0)에서 출발해서 우상단(x,y) 방향으로 늘어나는 형태입니다.
+    - 따라서 기존 뷰를 기준으로 하여 x, y 좌표의 값을 그대로 가져와 활용하는 경우, y 좌표 계산에 문제가 생기게 됩니다.
+    - 캡처하고자 하는 영역을 카메라뷰의 중앙에 고정했기 때문에, 이미지의 높이와 캡처 영역의 높이를 활용해 문제를 해결했습니다.
+
+```swift
+// 좌표계 변경에 따라 높이와 너비 값을 서로 바꾸어 줌.
+let imageWidth = CGFloat(cgImage.height)
+let imageHeight = CGFloat(cgImage.width)
+        
+let cameraPreviewViewWidth = cameraPreviewView.bounds.width
+let scale = imageWidth / cameraPreviewViewWidth
+
+// 크롭 영역의 frame 값        
+guard let maskLayerFrame = overlayView.subviews.first?.frame else { return }
+
+// 이미지의 높이를 절반으로 나누고, 크롭 영역의 높이를 비율에 따라 곱한 뒤 2로 나눈 뒤, 전자에서 후자를 빼어 시작점을 확인       
+let realCropX = (imageHeight / 2) - (maskLayerFrame.size.height * scale / 2)
+let realCropY = maskLayerFrame.origin.x * scale
+let realCropWidth = maskLayerFrame.size.height * scale
+let realCropHeight = maskLayerFrame.size.width * scale
+let realCropRect = CGRect(x: realCropX, y: realCropY, width: realCropWidth, height: realCropHeight)
+```
