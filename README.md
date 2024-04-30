@@ -167,6 +167,11 @@ openAI API 를 활용하기 위해서는 AR-GPT-ImageDetection/Supports/ 폴더 
 
 ## 5. 해결한 문제
 
+직접 촬영한 마커 등록 시 informationNode 가 인식된 이미지 하단에 붙어 출력되는 문제
+- 앱의 Orientation 을 Portrait 로 고정해 둔 상황에서, 아이폰 카메라 기능을 활용해 이미지를 저장하게 되면 iOS는 CGImagePropertyOrientation.right 값을 orientation 으로 저장하게 됩니다.
+- 따라서 마커를 직접 촬영해 ARReferenceImage 로 등록하면, 이미지 인식 시 인식된 앵커와 Node 의 오리엔테이션이 기본적으로 회전하여 나타나는 문제가 발생합니다.
+- 이를 해결하기 위해 이미지 Data 의 메타데이터에 저장된 Orientation 값을 읽어, 해당 값이 .right 인 경우에는 ARReferenceImage 를 등록하기 전 이미지를 회전하여 등록하는 것으로 문제를 해결했습니다.
+
 이미지 크롭 시 발생했던 문제
 - 배율 문제
     - UIView 의 frame: CGFloat 값과 실제 이미지의 사이즈: CGFloat 값은 서로 다른 단위를 가지고 있습니다.
