@@ -55,9 +55,9 @@ extension ImageDetectionViewController: ARSessionDelegate {
         imageDetectionView.delegate = self
         imageDetectionView.session.delegate = self
         
-        let configuration = ARWorldTrackingConfiguration()
+        let configuration = ARImageTrackingConfiguration()
         configuration.maximumNumberOfTrackedImages = 4
-        configuration.detectionImages = MarkerProvider.loadMarkerImages()
+        configuration.trackingImages = MarkerProvider.loadMarkerImages()
         
         imageDetectionView.session.run(configuration)
     }
