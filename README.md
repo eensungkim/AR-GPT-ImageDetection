@@ -1,4 +1,4 @@
-![IMG_1625](https://github.com/eensungkim/AR-GPT-ImageDetection/assets/73898006/42d350b9-549c-4ac1-b6fb-fe89655a07b5)# AR-GPT-ImageDetection
+# AR-GPT-ImageDetection
 
 AR 을 활용하여 이미지를 인식하고, openAI Vision API 를 활용해 인식한 이미지에 대한 정보를 출력하는 앱입니다.
 
