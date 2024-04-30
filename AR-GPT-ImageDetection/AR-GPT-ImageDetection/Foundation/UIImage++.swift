@@ -32,7 +32,7 @@ extension UIImage {
         
         // 좌표계 변환
         context.translateBy(x: size.width / 2, y: size.height / 2)
-        context.rotate(by: .pi) // 90도 회전
+        context.rotate(by: .pi)
         context.scaleBy(x: 1.0, y: -1.0)
 
         // 회전된 이미지 그리기
