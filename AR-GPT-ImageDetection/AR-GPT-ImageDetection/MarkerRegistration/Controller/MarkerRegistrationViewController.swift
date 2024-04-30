@@ -5,11 +5,8 @@
 //  Created by Kim EenSung on 4/16/24.
 //
 
+import PhotosUI
 import UIKit
-
-protocol MarkerRegistrationViewControllerDelegate: AnyObject {
-    func setImage(_ image: UIImage)
-}
 
 /// 마커등록뷰컨트롤러
 final class MarkerRegistrationViewController: UIViewController {
@@ -19,7 +16,7 @@ final class MarkerRegistrationViewController: UIViewController {
     weak var delegate: MarkerImageCollectionViewControllerDelegate?
     private var markerImage: MarkerImage?
     
-    let markerImageView: UIImageView = {
+    private let markerImageView: UIImageView = {
         let configuration = UIImage.SymbolConfiguration(pointSize: 1024, weight: .light, scale: .large)
         let skeletonImage = UIImage(systemName: "photo", withConfiguration: configuration)
         let imageView = UIImageView(image: skeletonImage)
@@ -39,7 +36,7 @@ final class MarkerRegistrationViewController: UIViewController {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "사진 등록"
         let photoLibraryButton = UIButton(configuration: configuration)
-        photoLibraryButton.addTarget(target, action: #selector(presentPhotoLibrary), for: .touchUpInside)
+        photoLibraryButton.addTarget(target, action: #selector(tapPhotoLibraryButton), for: .touchUpInside)
         return photoLibraryButton
     }()
     
@@ -47,7 +44,7 @@ final class MarkerRegistrationViewController: UIViewController {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "직접 촬영"
         let cameraButton = UIButton(configuration: configuration)
-        cameraButton.addTarget(target, action: #selector(presentCamera), for: .touchUpInside)
+        cameraButton.addTarget(target, action: #selector(tapCameraButton), for: .touchUpInside)
         return cameraButton
     }()
 
@@ -71,7 +68,7 @@ final class MarkerRegistrationViewController: UIViewController {
         configuration.baseForegroundColor = .systemGray2
         configuration.buttonSize = .large
         let addButton = UIButton(configuration: configuration)
-        addButton.addTarget(target, action: #selector(saveMarkerImage), for: .touchUpInside)
+        addButton.addTarget(target, action: #selector(tapAddButton), for: .touchUpInside)
         return addButton
     }()
     
@@ -96,6 +93,26 @@ final class MarkerRegistrationViewController: UIViewController {
     }
 }
 
+// MARK: - @objc Methods
+extension MarkerRegistrationViewController {
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    @objc private func tapPhotoLibraryButton() {
+        presentPickerViewController()
+    }
+    
+    @objc private func tapCameraButton() {
+        presentMarkerImageCaptureViewController()
+    }
+    
+    @objc private func tapAddButton() {
+        saveMarkerImage()
+        self.dismiss(animated: true)
+    }
+}
+
 // MARK: - Configuration
 extension MarkerRegistrationViewController {
     private func initializeHideKeyboard() {
@@ -104,6 +121,67 @@ extension MarkerRegistrationViewController {
             action: #selector(dismissKeyboard)
         )
         view.addGestureRecognizer(tap)
+    }
+}
+
+// MARK: - Methods
+extension MarkerRegistrationViewController {
+    private func toggleAddButton() {
+        guard
+            let isNameValid = nameView.textField.text?.isEmpty,
+            let isImageValid = markerImageView.image?.isSymbolImage
+        else {
+            addButton.isEnabled = false
+            return
+        }
+        
+        addButton.isEnabled = !isNameValid && !isImageValid
+    }
+    
+    func setFields(_ markerImage: MarkerImage) {
+        do {
+            guard let image = UIImage(data: markerImage.data) else {
+                throw ImageError.conversionFailure
+            }
+            markerImageView.image = image
+            nameView.textField.text = markerImage.name
+            descriptionView.textField.text = markerImage.information
+            additionalInformationView.textField.text = markerImage.additionalInformation
+        } catch {
+            makeAlert(message: error.localizedDescription, confirmAction: nil)
+        }
+    }
+    
+    private func saveMarkerImage() {
+        guard
+            let name = nameView.textField.text,
+            let image = markerImageView.image,
+            let imageData = image.pngData(),
+            let information = descriptionView.textField.text,
+            let additionalInformation = additionalInformationView.textField.text
+        else { return }
+        
+        if markerImage != nil {
+            markerImage?.update(
+                name: name,
+                data: imageData,
+                information: information,
+                additionalInformation: additionalInformation
+            )
+            guard let marker = markerImage else { return }
+            markerImageManager.update(with: marker)
+        } else {
+            let markerImage = MarkerImage(
+                id: UUID(),
+                name: name,
+                data: imageData,
+                information: information,
+                additionalInformation: additionalInformation
+            )
+            _ = MarkerImageMO(markerImage: markerImage, context: markerImageManager.persistentContainer.viewContext)
+        }
+        markerImageManager.save()
+        delegate?.reloadMarkerImages()
     }
 }
 
@@ -155,90 +233,6 @@ extension MarkerRegistrationViewController {
     }
 }
 
-// MARK: - Methods
-extension MarkerRegistrationViewController {
-    private func toggleAddButton() {
-        guard
-            let isNameValid = nameView.textField.text?.isEmpty,
-            let isImageValid = markerImageView.image?.isSymbolImage
-        else {
-            addButton.isEnabled = false
-            return
-        }
-        
-        addButton.isEnabled = !isNameValid && !isImageValid
-    }
-    
-    func setFields(_ markerImage: MarkerImage) {
-        do {
-            guard let image = UIImage(data: markerImage.data) else {
-                throw ImageError.conversionFailure
-            }
-            markerImageView.image = image
-            nameView.textField.text = markerImage.name
-            descriptionView.textField.text = markerImage.information
-            additionalInformationView.textField.text = markerImage.additionalInformation
-        } catch {
-            makeAlert(message: error.localizedDescription, confirmAction: nil)
-        }
-    }
-}
-
-// MARK: - @objc Methods
-extension MarkerRegistrationViewController {
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    @objc func presentPhotoLibrary() {
-        presentPickerViewController()
-    }
-    
-    @objc func presentCamera() {
-        presentCameraView()
-    }
-    
-    @objc func saveMarkerImage() {
-        guard 
-            let name = nameView.textField.text,
-            let image = markerImageView.image,
-            let imageData = image.pngData(),
-            let information = descriptionView.textField.text,
-            let additionalInformation = additionalInformationView.textField.text
-        else { return }
-        
-        if markerImage != nil {
-            markerImage?.update(
-                name: name,
-                data: imageData,
-                information: information,
-                additionalInformation: additionalInformation
-            )
-            guard let marker = markerImage else { return }
-            markerImageManager.update(with: marker)
-        } else {
-            let markerImage = MarkerImage(
-                id: UUID(),
-                name: name,
-                data: imageData,
-                information: information,
-                additionalInformation: additionalInformation
-            )
-            _ = MarkerImageMO(markerImage: markerImage, context: markerImageManager.persistentContainer.viewContext)
-        }
-        markerImageManager.save()
-        delegate?.reloadMarkerImages()
-        self.dismiss(animated: true)
-    }
-}
-
-// MARK: - MarkerRegistrationViewControllerDelegate
-extension MarkerRegistrationViewController: MarkerRegistrationViewControllerDelegate {
-    func setImage(_ image: UIImage) {
-        markerImageView.image = image
-    }
-}
-
 // MARK: - UITextFieldDelegate
 extension MarkerRegistrationViewController: UITextFieldDelegate {
     private func setTextFieldDelegate() {
@@ -248,5 +242,50 @@ extension MarkerRegistrationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         toggleAddButton()
         return true
+    }
+}
+
+// MARK: - PHPickerViewControllerDelegate
+extension MarkerRegistrationViewController: PHPickerViewControllerDelegate {
+    private func presentPickerViewController() {
+        var configuration = PHPickerConfiguration(photoLibrary: .shared())
+        configuration.filter = .images
+        let pickerViewController = PHPickerViewController(configuration: configuration)
+        pickerViewController.delegate = self
+        present(pickerViewController, animated: true)
+    }
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        if let itemProvider = results.first?.itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                DispatchQueue.main.async {
+                    guard let selectedImage = image as? UIImage else { return }
+                    self?.markerImageView.image = selectedImage
+                }
+            }
+        }
+        
+        picker.dismiss(animated: true)
+    }
+}
+
+// MARK: - MarkerRegistrationViewControllerDelegate
+protocol MarkerRegistrationViewControllerDelegate: AnyObject {
+    func setImage(_ image: UIImage)
+}
+
+extension MarkerRegistrationViewController: MarkerRegistrationViewControllerDelegate {
+    func setImage(_ image: UIImage) {
+        markerImageView.image = image
+    }
+}
+
+extension MarkerRegistrationViewController {
+    private func presentMarkerImageCaptureViewController() {
+        let markerImageCaptureViewController = MarkerImageCaptureViewController()
+        markerImageCaptureViewController.delegate = self
+        markerImageCaptureViewController.modalPresentationStyle = .fullScreen
+        present(markerImageCaptureViewController, animated: true)
     }
 }
