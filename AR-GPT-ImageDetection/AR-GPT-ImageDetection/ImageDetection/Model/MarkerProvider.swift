@@ -20,41 +20,20 @@ struct MarkerProvider {
             var finalImage: UIImage?
             
             if let image = UIImage(data: markerImage.data) {
-                let orientation = orientation(from: markerImage.data)
-                
-                if orientation == .right {
+                if image.imageOrientation == .right {
                     finalImage = image.rotateImage90Degrees(image: image)
                 } else {
                     finalImage = image
                 }
                 
                 if let cgImage = finalImage?.cgImage {
-                    let referenceImage = ARReferenceImage(cgImage, orientation: orientation, physicalWidth: 0.2)
+                    let referenceImage = ARReferenceImage(cgImage, orientation: CGImagePropertyOrientation(image.imageOrientation), physicalWidth: 0.2)
                     referenceImage.name = markerImage.id.uuidString  // 중복되지 않는 값인 UUID 로 식별
                     referenceImages.insert(referenceImage)
                 }
             }
         }
         return referenceImages
-    }
-    
-    static func orientation(from data: Data) -> CGImagePropertyOrientation {
-        let options = [kCGImageSourceShouldCache as String: false] // 메모리 사용을 최소화하기 위해 캐시하지 않음
-        guard let source = CGImageSourceCreateWithData(data as CFData, options as CFDictionary) else {
-            return .up // 기본 방향
-        }
-        
-        let propertiesOptions = [kCGImageSourceTypeIdentifierHint as String: true]
-        guard
-            let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions as CFDictionary) as? Dictionary<String, Any>,
-            let orientationValue = properties[kCGImagePropertyOrientation as String] as? UInt32,
-            let orientation = CGImagePropertyOrientation(rawValue: orientationValue)
-        else {
-            return .up
-        }
-        
-        print(orientation.rawValue)
-        return orientation
     }
 
     static func getMetaData(by id: String) -> MarkerImage? {
