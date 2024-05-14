@@ -85,10 +85,15 @@ final class MarkerRegistrationViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        setupKeyboardObservers()
         initializeHideKeyboard()
         setTextFieldDelegate()
         toggleAddButton()
@@ -97,6 +102,10 @@ final class MarkerRegistrationViewController: UIViewController {
 
 // MARK: - @objc Methods
 extension MarkerRegistrationViewController {
+    @objc private func showKeyboard() {
+        scrollView.scrollRectToVisible(addButton.frame, animated: true)
+    }
+    
     @objc private func dismissKeyboard() {
         contentView.endEditing(true)
     }
@@ -123,6 +132,10 @@ extension MarkerRegistrationViewController {
             action: #selector(dismissKeyboard)
         )
         contentView.addGestureRecognizer(tap)
+    }
+    
+    private func setupKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
 }
 
