@@ -16,6 +16,8 @@ final class MarkerRegistrationViewController: UIViewController {
     weak var delegate: MarkerImageCollectionViewControllerDelegate?
     private var markerImage: MarkerImage?
     
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let markerImageView: UIImageView = {
         let configuration = UIImage.SymbolConfiguration(pointSize: 1024, weight: .light, scale: .large)
         let skeletonImage = UIImage(systemName: "photo", withConfiguration: configuration)
@@ -96,7 +98,7 @@ final class MarkerRegistrationViewController: UIViewController {
 // MARK: - @objc Methods
 extension MarkerRegistrationViewController {
     @objc private func dismissKeyboard() {
-        view.endEditing(true)
+        contentView.endEditing(true)
     }
     
     @objc private func tapPhotoLibraryButton() {
@@ -120,7 +122,7 @@ extension MarkerRegistrationViewController {
             target: self,
             action: #selector(dismissKeyboard)
         )
-        view.addGestureRecognizer(tap)
+        contentView.addGestureRecognizer(tap)
     }
 }
 
@@ -197,38 +199,59 @@ extension MarkerRegistrationViewController {
         stackView.addArrangedSubview(descriptionView)
         stackView.addArrangedSubview(additionalInformationView)
         
-        view.addSubview(markerImageView)
-        view.addSubview(buttonStackView)
-        view.addSubview(stackView)
-        view.addSubview(addButton)
+        contentView.addSubview(markerImageView)
+        contentView.addSubview(buttonStackView)
+        contentView.addSubview(stackView)
+        contentView.addSubview(addButton)
         
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         markerImageView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            markerImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            markerImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            markerImageView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            markerImageView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.618)
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            buttonStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            markerImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            markerImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            markerImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            markerImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.618)
+        ])
+        
+        NSLayoutConstraint.activate([
+            buttonStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             buttonStackView.topAnchor.constraint(equalTo: markerImageView.bottomAnchor, constant: 20)
         ])
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor, constant: 20),
-            stackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            stackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.85),
+            stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            stackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85),
         ])
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
-            addButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            addButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.23)
+            addButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            addButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.23),
+            addButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
         ])
     }
 }
